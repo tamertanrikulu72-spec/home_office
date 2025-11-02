@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design & Engineering Services | Your Name</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for the "Inter" font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styling for text shadow on the placeholder image */
+        .shadow-text {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Sticky Header/Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-extrabold text-indigo-700 tracking-tight">
+                [Your Studio Name]
+            </a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#projects" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-150">Projects</a>
+                <a href="#services" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-150">Home Office Services</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-150">Contact</a>
+            </div>
+            <!-- Mobile Menu Placeholder (Not functional, but shows the intent) -->
+            <button class="md:hidden text-gray-600 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="bg-indigo-700 text-white py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    Precision Design & Engineering Consultancy
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
+                    Transforming concepts into high-quality machine designs and offering specialized technical consultation right from our home office.
+                </p>
+                <a href="#contact" class="inline-block bg-white text-indigo-700 font-bold py-3 px-8 rounded-lg shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Start Your Project
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects Section (Portfolio) -->
+        <section id="projects" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+                    Featured Machine Design Projects
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden">
+                        <!-- Placeholder Image (replace with your design renderings) -->
+                        <img src="https://placehold.co/600x400/312e81/ffffff?text=Industrial+Fixture" alt="Industrial Fixture Design" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-indigo-700">Automated Assembly Fixture</h3>
+                            <p class="text-gray-600 text-sm">A custom-designed jig for high-speed, precision assembly, reducing cycle time by 30% in a manufacturing environment. CAD modeled in SolidWorks.</p>
+                            <a href="#" class="mt-4 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-800">View Details &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden">
+                        <img src="https://placehold.co/600x400/065f46/ffffff?text=Robotic+Arm" alt="Robotic Arm Component" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-indigo-700">Lightweight Actuator Housing</h3>
+                            <p class="text-gray-600 text-sm">Design optimization for a robotic arm component using FEA simulation to maximize strength-to-weight ratio. Suitable for 3D printing and CNC milling.</p>
+                            <a href="#" class="mt-4 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-800">View Details &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Consumer+Product+Enclosure" alt="Product Enclosure Design" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-indigo-700">Ergonomic Device Enclosure</h3>
+                            <p class="text-gray-600 text-sm">Full mechanical design of a new consumer electronic device, focusing on user ergonomics, thermal management, and manufacturability (injection molding).</p>
+                            <a href="#" class="mt-4 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-800">View Details &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home Office Services Section (Advertisement) -->
+        <section id="services" class="py-16 md:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+                    <div class="lg:col-span-6 mb-8 lg:mb-0">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                            Remote Engineering & Home Office Consultancy
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-6">
+                            Need expert mechanical design or technical guidance without the overhead? Our dedicated home office provides efficient, high-quality engineering services delivered remotely.
+                        </p>
+
+                        <div class="space-y-4">
+                            <!-- Service 1 -->
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 text-indigo-600 mt-1">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.25 10.75M9.75 17L14.25 10.75M14.25 17L9.75 10.75M14.25 17L18.75 10.75M4.5 9.75a2.25 2.25 0 012.25-2.25h1.5a2.25 2.25 0 012.25 2.25v2.5a2.25 2.25 0 01-2.25 2.25h-1.5a2.25 2.25 0 01-2.25-2.25v-2.5z"></path></svg>
+                                </span>
+                                <p class="ml-3 text-gray-700">
+                                    <strong class="font-semibold">CAD Modeling & Drafting:</strong> Creating production-ready 3D models and 2D engineering drawings (SolidWorks, Fusion 360, etc.).
+                                </p>
+                            </div>
+                            <!-- Service 2 -->
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 text-indigo-600 mt-1">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </span>
+                                <p class="ml-3 text-gray-700">
+                                    <strong class="font-semibold">FEA & Simulation:</strong> Stress analysis, thermal simulation, and mechanism kinematic studies.
+                                </p>
+                            </div>
+                            <!-- Service 3 -->
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 text-indigo-600 mt-1">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-1.343 3-3s-1.343-3-3-3m0 6a9 9 0 009-9m-9 9l4.57-2.285M12 9l4.57-2.285"></path></svg>
+                                </span>
+                                <p class="ml-3 text-gray-700">
+                                    <strong class="font-semibold">Prototyping & DFM:</strong> Guidance on material selection, manufacturing processes, and design-for-manufacturability (DFM).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image/Illustration for Home Office -->
+                    <div class="lg:col-span-6 flex justify-center">
+                        <div class="relative p-6 bg-white rounded-xl shadow-2xl w-full max-w-md">
+                            <img src="https://placehold.co/800x600/6366f1/ffffff?text=Home+Office+Setup" alt="Professional home office setup" class="w-full rounded-lg h-64 object-cover">
+                            <div class="absolute inset-0 bg-indigo-700 opacity-20 rounded-lg"></div>
+                            <p class="absolute bottom-4 left-6 text-xl font-bold text-white shadow-text">Remote Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
+                    Get In Touch
+                </h2>
+                <p class="text-center text-lg text-gray-600 mb-12">
+                    Ready to discuss your next project or service needs? Send a message below.
+                </p>
+
+                <!-- Simple Contact Form (Note: A real form requires server-side handling or a form service) -->
+               <form action="/submit_contact" method="POST" class="space-y-6 bg-gray-50 p-8 rounded-xl shadow-2xl">
+               
+               
+               
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Project Details</label>
+                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
+                            Send Message
+                        </button>
+                    </div>
+                    <p class="text-center text-xs text-gray-500">
+                        Note: This is a placeholder form. You will need to configure your server to handle the submission.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p class="mb-2">&copy; 2024 Your Name | All Rights Reserved.</p>
+            <p class="text-gray-400">
+                Email: your.email@example.com | Phone: (555) 555-1234
+            </p>
+            <!-- Back to top link -->
+            <a href="#hero" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition duration-150">
+                Back to Top
+            </a>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for Smooth Scroll (optional, as scroll-smooth is in HTML tag) -->
+    <script>
+        // Fallback for older browsers or if 'scroll-smooth' doesn't work perfectly
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
