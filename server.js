@@ -3,6 +3,14 @@ const express = require('express');
 const mongoose = require('mongoose'); // ADD THIS LINE
 const path = require('path');
 const app = express();
+
+// --- NEW CODE: Load .env file for local development ---
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+
+
 // Render uses the environment variable PORT, otherwise default to 3000
 const PORT = process.env.PORT || 3000; 
 
