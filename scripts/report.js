@@ -11,6 +11,7 @@ const MONGO_URI = process.env.MONGO_URI;
 // --- 2. Database Schema Definition (Must match server.js) ---
 const LeadSchema = new mongoose.Schema({
     full_name: { type: String, required: true },
+    tel:{ type: String   },
     email_address: { type: String, required: true },
     project_details: String,
     submission_date: { type: Date, default: Date.now }
@@ -54,6 +55,7 @@ async function printAllLeads() {
 
                 console.log(`[#${index + 1}] ID: ${lead._id}`);
                 console.log(`    Name: ${lead.full_name}`);
+                console.log(`    Tel: ${lead.tel || 'N/A'}`);
                 console.log(`    Email: ${lead.email_address}`);
                 console.log(`    Submitted: ${dateString}`);
                 console.log(`    Details: ${lead.project_details ? lead.project_details.substring(0, 80) + (lead.project_details.length > 80 ? '...' : '') : 'N/A'}`);

@@ -1,6 +1,5 @@
 const express = require('express');
-// const sqlite3 = require('sqlite3').verbose(); // REMOVE THIS LINE
-const mongoose = require('mongoose'); // ADD THIS LINE
+const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 
@@ -9,17 +8,17 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-
-
 // Render uses the environment variable PORT, otherwise default to 3000
 const PORT = process.env.PORT || 3000; 
 
 // --- 1. Database Initialization (Updated for MongoDB) ---
-// Use the MongoDB URI from a secure environment variable (set on Render)
+// Use the MongoDB URI from a secure environment variable
 const MONGO_URI = process.env.MONGO_URI; 
 
 if (!MONGO_URI) {
     console.error("FATAL ERROR: MONGO_URI is not defined! Application cannot connect to database.");
+    // In a real production environment, you might want to handle this more gracefully,
+    // but for local testing, exiting is often best to prevent silent failures.
     process.exit(1);
 }
 
@@ -34,6 +33,8 @@ mongoose.connect(MONGO_URI)
 // Define the Schema (structure) for the Leads collection
 const LeadSchema = new mongoose.Schema({
     full_name: { type: String, required: true },
+    // ADDED: The telephone number field
+    tel: { type: String }, 
     email_address: { type: String, required: true },
     project_details: String,
     submission_date: { type: Date, default: Date.now }
@@ -43,42 +44,53 @@ const LeadSchema = new mongoose.Schema({
 const Lead = mongoose.model('Lead', LeadSchema);
 
 
-// --- 2. Middleware (No Change) ---
+// --- 2. Middleware ---
+// Parse incoming requests with JSON payloads (not strictly needed for form-urlencoded but good practice)
+app.use(express.json()); 
+// Parse incoming form data from the contact form submission
 app.use(express.urlencoded({ extended: true })); 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public'))); 
+// Serve static files from the root directory (e.g., index.html, thank_you.html)
+app.use(express.static(path.join(__dirname, ''))); 
 
 
-// --- 3. Form Submission Handler (Updated for MongoDB) ---
+// --- 3. Contact Form Submission POST Handler (Updated for Tel field) ---
 app.post('/submit_contact', async (req, res) => {
-    const { name, email, message } = req.body;
-    
-    if (!name || !email || !message) {
-        return res.status(400).send('Missing required fields: Name, Email, and Message are required.');
+    // Check if the request body is present
+    if (!req.body) {
+        console.log("Validation Failed: Empty request body.");
+        return res.redirect('/thank_you.html?status=error');
+    }
+
+    // Server-side validation (now requiring name, email, message, AND tel)
+    if (!req.body.name || !req.body.email || !req.body.message || !req.body.tel) {
+        console.log("Validation Failed: Missing required fields (name, email, message, or tel).");
+        return res.redirect('/thank_you.html?status=error');
     }
 
     try {
-        // Create a new Lead document using the Mongoose Model
         const newLead = new Lead({
-            full_name: name,
-            email_address: email,
-            project_details: message,
+            full_name: req.body.name,
+            // ADDED: Capture the telephone number from the form data
+            tel: req.body.tel, 
+            email_address: req.body.email,
+            project_details: req.body.message,
             submission_date: new Date()
         });
         
         await newLead.save(); // Save the new lead to MongoDB
-        console.log(`A new lead was inserted: ${newLead._id}`);
+        console.log(`A new lead was inserted: ${newLead._id} from ${newLead.full_name}`);
         
         // Redirect the user to the success page
-        res.redirect('/thank_you.html'); 
+        res.redirect('/thank_you.html?status=success'); 
     } catch (err) {
         console.error("MongoDB INSERT error:", err.message);
-        return res.status(500).send('Error saving your data. Please try again.');
+        // Redirect to error page on database failure
+        return res.redirect('/thank_you.html?status=error');
     }
 });
 
 
-// --- 4. Leads API Endpoint (Updated for MongoDB) ---
+// --- 4. Leads API Endpoint (Updated for MongoDB and Tel field) ---
 app.get('/api/leads', async (req, res) => {
     try {
         // Find all leads, sort by submission_date descending (most recent first)
@@ -88,6 +100,8 @@ app.get('/api/leads', async (req, res) => {
         const formattedLeads = leads.map(lead => ({
             id: lead._id, // Use MongoDB ID
             full_name: lead.full_name,
+            // ADDED: Include the telephone number
+            tel: lead.tel || 'N/A', 
             email_address: lead.email_address,
             project_details: lead.project_details,
             submission_date: lead.submission_date.toISOString() // Ensure date is string format
@@ -104,5 +118,5 @@ app.get('/api/leads', async (req, res) => {
 
 // --- 5. Server Start ---
 app.listen(PORT, () => {
-    console.log(`Server is READY on port ${PORT}!`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
