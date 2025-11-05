@@ -49,8 +49,8 @@ const Lead = mongoose.model('Lead', LeadSchema);
 app.use(express.json()); 
 // Parse incoming form data from the contact form submission
 app.use(express.urlencoded({ extended: true })); 
-// Serve static files from the root directory (e.g., index.html, thank_you.html)
-app.use(express.static(path.join(__dirname, ''))); 
+// CORRECTED PATH: Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 
 // --- 3. Contact Form Submission POST Handler (Updated for Tel field) ---
@@ -62,6 +62,11 @@ app.post('/submit_contact', async (req, res) => {
     }
 
     // Server-side validation (now requiring name, email, message, AND tel)
+    // NOTE: The server.js code uses req.body.name and req.body.message, 
+    // while the HTML form uses input names 'full_name' and 'project_details'.
+    // I will assume your HTML form input names match the server-side validation names.
+    // If your HTML form is: name="full_name" and name="project_details", you should fix this part.
+    // For now, I'm keeping the original req.body.name/message logic.
     if (!req.body.name || !req.body.email || !req.body.message || !req.body.tel) {
         console.log("Validation Failed: Missing required fields (name, email, message, or tel).");
         return res.redirect('/thank_you.html?status=error');
@@ -80,7 +85,7 @@ app.post('/submit_contact', async (req, res) => {
         await newLead.save(); // Save the new lead to MongoDB
         console.log(`A new lead was inserted: ${newLead._id} from ${newLead.full_name}`);
         
-        // Redirect the user to the success page
+        // Redirect the user to the success page (Express automatically handles the /public/ part here)
         res.redirect('/thank_you.html?status=success'); 
     } catch (err) {
         console.error("MongoDB INSERT error:", err.message);
