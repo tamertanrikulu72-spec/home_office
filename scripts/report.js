@@ -75,4 +75,3 @@ async function printAllLeads() {
 
 // Execute the main function
 printAllLeads();
-
