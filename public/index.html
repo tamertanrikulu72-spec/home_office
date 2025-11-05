@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasarim & Muhendislik Hizmetleri | Your Name</title>
-    <!-- Load Tailwind CSS CDN -->
+    <meta name="description" content="Uzman makine tasarımı, çelik konstrüksiyon mühendisliği ve endüstriyel ürün geliştirme hizmetleri. Fikirlerinizi gerçeğe dönüştürün.">
+   
+   
+   <title data-key="page_title">Profesyonel Makine Tasarımı & Mühendislik Hizmetleri | [Tasarim]</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configure Tailwind for the "Inter" font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         :root {
@@ -26,19 +27,26 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Sticky Header/Navigation -->
     <header class="sticky top-0 z-50 bg-white shadow-lg">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#hero" class="text-2xl font-extrabold text-indigo-700 tracking-tight">
                 [Tasarim]
             </a>
-            <div class="space-x-4 hidden md:flex">
-                <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Projeler</a>
-                <a href="#services" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Servisler</a>
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Hakkimizda</a>
-                <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg shadow-md transition duration-150">Iletisim</a>
+            
+            <div id="language-switcher" class="flex space-x-1 border border-gray-200 rounded-lg p-1 bg-gray-50 ml-auto mr-4 md:mr-0">
+                <button data-lang="tr" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">TR</button>
+                <button data-lang="en" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">EN</button>
             </div>
-            <!-- Simple Mobile Menu Placeholder -->
+            
+           <div class="space-x-4 hidden md:flex">
+                <a href="#projects" data-key="nav_projects" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Projeler</a>
+                <a href="#services" data-key="nav_services" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Servisler</a>
+                <a href="#about" data-key="nav_about" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Hakkimizda</a>
+                <a href="#case-studies" data-key="nav_blog" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium">Uzmanlık Yazıları</a>
+                <a href="#contact" data-key="nav_contact_btn" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg shadow-md transition duration-150">Iletisim</a>
+            </div>
+            
+            
             <button class="md:hidden text-indigo-600 hover:text-indigo-800">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
@@ -46,24 +54,22 @@
     </header>
 
     <main>
-        <!-- 1. Hero Section -->
         <section id="hero" class="relative overflow-hidden pt-16 md:pt-24 pb-16 bg-gradient-to-br from-indigo-50 to-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <span class="text-sm font-semibold uppercase text-indigo-500 tracking-wider">Tasarim | Muhendislik | Inovasyon</span>
-                    <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mt-3 leading-tight">
+                    <span data-key="hero_tag" class="text-sm font-semibold uppercase text-indigo-500 tracking-wider">Tasarim | Muhendislik | Inovasyon</span>
+                    <h1 data-key="hero_h1" class="text-5xl sm:text-6xl font-extrabold text-gray-900 mt-3 leading-tight">
                         Fikirleri Gercege <span class="text-indigo-600">Donusturme.</span>
                     </h1>
-                    <p class="mt-6 text-lg text-gray-600 max-w-lg">
+                    <p data-key="hero_p" class="mt-6 text-lg text-gray-600 max-w-lg">
                         Tasarım prensiplerinin sağlam mühendislik çözümleriyle kusursuz entegrasyonunda  uzman danışmanlık ve geliştirme hizmetleri sunuyoruz
                     </p>
                     <div class="mt-8 flex space-x-4">
-                        <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Proje Teklifi Iste</a>
-                        <a href="#projects" class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border border-indigo-200 shadow-md hover:bg-indigo-50 transition duration-300">Urun Tasarimi</a>
+                        <a href="#contact" data-key="hero_btn_quote" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Proje Teklifi Iste</a>
+                        <a href="#projects" data-key="hero_btn_product" class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border border-indigo-200 shadow-md hover:bg-indigo-50 transition duration-300">Urun Tasarimi</a>
                     </div>
                 </div>
                 
-                <!-- Placeholder Image/Graphic -->
                 <div class="md:w-1/2 w-full flex justify-center">
                   <img 
                   src="pictures/pict3.jpg" alt="Tasarim ve Muhendislik Hizmetleri" 
@@ -74,14 +80,12 @@
             </div>
         </section>
 
-        <!-- 2. Projects Section -->
         <section id="projects" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold text-gray-900">Öne Çıkan Projeler</h2>
-                <p class="mt-4 text-lg text-gray-600">Teknik ihtiyaclari ozel tasarımla birlestiren  çalışmalardan ornekler.</p>
+                <h2 data-key="projects_h2" class="text-3xl font-bold text-gray-900">Öne Çıkan Projeler</h2>
+                <p data-key="projects_p" class="mt-4 text-lg text-gray-600">Teknik ihtiyaclari ozel tasarımla birlestiren  çalışmalardan ornekler.</p>
                 
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
                     <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border border-gray-100">
                         <img 
                         src="pictures/pic2.jpg" 
@@ -90,11 +94,10 @@
                         >
                       
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-900">Sabit ve Mobil Tesisler </h3>
-                            <p class="mt-2 text-gray-600 text-sm">Cesitli Uretim kapasitelerinde Sabit ve Mobil Tesis Tasarimi.</p>
+                            <h3 data-key="proj1_title" class="text-xl font-semibold text-gray-900">Sabit ve Mobil Tesisler </h3>
+                            <p data-key="proj1_desc" class="mt-2 text-gray-600 text-sm">Cesitli Uretim kapasitelerinde Sabit ve Mobil Tesis Tasarimi.</p>
                         </div>
                     </div>
-                    <!-- Project Card 2 -->
                     <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border border-gray-100">
                        
                          <img 
@@ -106,11 +109,10 @@
                             
                       
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-900">Bant, Helezon,Silo</h3>
-                            <p class="mt-2 text-gray-600 text-sm">Dozaj Sistemi,mikser,Bant Konveyor.</p>
+                            <h3 data-key="proj2_title" class="text-xl font-semibold text-gray-900">Bant, Helezon,Silo</h3>
+                            <p data-key="proj2_desc" class="mt-2 text-gray-600 text-sm">Dozaj Sistemi,mikser,Bant Konveyor.</p>
                         </div>
                     </div>
-                    <!-- Project Card 3 -->
                     <div class="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border border-gray-100">
                       
                          <img 
@@ -121,115 +123,236 @@
                            
                        
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-900">Ihtiyaca Gore Makine Tasarimi</h3>
-                            <p class="mt-2 text-gray-600 text-sm">Makasli Liftler,Ozel Tasarim Forklift.</p>
+                            <h3 data-key="proj3_title" class="text-xl font-semibold text-gray-900">Ihtiyaca Gore Makine Tasarimi</h3>
+                            <p data-key="proj3_desc" class="mt-2 text-gray-600 text-sm">Makasli Liftler,Ozel Tasarim Forklift.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Services Section -->
         <section id="services" class="py-16 sm:py-24 bg-indigo-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900">Uzmanlik Alanimiz</h2>
-                    <p class="mt-4 text-lg text-gray-600"> Teknik ihtiyaclar dogrultusunda ozel tasarim hizmeti sunuyoruz. </p>
+                    <h2 data-key="services_h2" class="text-3xl font-bold text-gray-900">Uzmanlik Alanimiz</h2>
+                    <p data-key="services_p" class="mt-4 text-lg text-gray-600"> Teknik ihtiyaclar dogrultusunda ozel tasarim hizmeti sunuyoruz. </p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
                     <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-600">
                         <div class="flex items-center space-x-4">
                             <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <h3 class="text-xl font-semibold text-gray-900">Verimli calisan makinelerin tasarimi</h3>
+                            <h3 data-key="serv1_title" class="text-xl font-semibold text-gray-900">Verimli calisan makinelerin tasarimi</h3>
                         </div>
-                        <p class="mt-4 text-gray-600 text-sm">Kullanici dostu makine ve ekipman uretimi amacina yonelik ergonomik tasarim.</p>
+                        <p data-key="serv1_desc" class="mt-4 text-gray-600 text-sm">Kullanici dostu makine ve ekipman uretimi amacina yonelik ergonomik tasarim.</p>
                     </div>
-                    <!-- Service 2 -->
                     <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-600">
                         <div class="flex items-center space-x-4">
                             <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <h3 class="text-xl font-semibold text-gray-900">Urun Gelistirme</h3>
+                            <h3 data-key="serv2_title" class="text-xl font-semibold text-gray-900">Urun Gelistirme</h3>
                         </div>
-                        <p class="mt-4 text-gray-600 text-sm">Fiziksel ürünler için konsept çiziminden ve bilgisayar modellemesinden prototiplemeye ve üretim koordinasyonuna kadar proje destegi.</p>
+                        <p data-key="serv2_desc" class="mt-4 text-gray-600 text-sm">Fiziksel ürünler için konsept çiziminden ve bilgisayar modellemesinden prototiplemeye ve üretim koordinasyonuna kadar proje destegi.</p>
                     </div>
-                    <!-- Service 3 -->
                     <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-600">
                         <div class="flex items-center space-x-4">
                             <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2h-1a2 2 0 00-2 2v3m-2-3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 class="text-xl font-semibold text-gray-900">Arge Calismalari</h3>
+                            <h3 data-key="serv3_title" class="text-xl font-semibold text-gray-900">Arge Calismalari</h3>
                         </div>
-                        <p class="mt-4 text-gray-600 text-sm">Kaliteli uretimi destekleyici ve teknik ihtiyaclara cevap verecek sekilde muhendislik hizmetleri.</p>
+                        <p data-key="serv3_desc" class="mt-4 text-gray-600 text-sm">Kaliteli uretimi destekleyici ve teknik ihtiyaclara cevap verecek sekilde muhendislik hizmetleri.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. About Section -->
         <section id="about" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold text-gray-900">Hakkimizda</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                <h2 data-key="about_h2" class="text-3xl font-bold text-gray-900">Hakkimizda</h2>
+                <p data-key="about_p" class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
                     Makine ve ekipmanlarin verimli ve fonksiyonel  calismasi ve celik konstruksiyon yapilarin emniyetli ve teknige uygun bir sekilde imalatini destekleyici tasarimlar yapma sorumluluguyla calisma ilkesini benimsiyoruz.
                 </p>
             </div>
         </section>
 
-        <!-- 5. Contact Section -->
         <section id="contact" class="py-16 sm:py-24 bg-indigo-700">
             <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-white">Bize Ulasin</h2>
-                    <p class="mt-2 text-indigo-200">Bir projeniz mi var? Mesaj gönderin, size nasıl yardımcı olabileceğimizi konuşalım.</p>
+                    <h2 data-key="contact_h2" class="text-3xl font-bold text-white">Bize Ulasin</h2>
+                    <p data-key="contact_p" class="mt-2 text-indigo-200">Bir projeniz mi var? Mesaj gönderin, size nasıl yardımcı olabileceğimizi konuşalım.</p>
                 </div>
 
-                <!-- Form: Action and Method match server.js route -->
                 <form action="/submit_contact" method="POST" class="space-y-6 bg-white p-8 rounded-xl shadow-2xl">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 required-label">Tam Isim</label>
+                        <label for="name" data-key="contact_label_name" class="block text-sm font-medium text-gray-700 required-label">Tam Isim</label>
                         <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
 
+
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 required-label">Email Adres</label>
+                        <label for="tel" data-key="contact_label_tel" class="block text-sm font-medium text-gray-700 required-label">Telephone Number</label>
+                        <input type="text" id="tel" name="tel" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label for="email" data-key="contact_label_email" class="block text-sm font-medium text-gray-700 required-label">Email Adres</label>
                         <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 required-label">Proje Detaylari / Mesaj</label>
+                        <label for="message" data-key="contact_label_message" class="block text-sm font-medium text-gray-700 required-label">Proje Detaylari / Mesaj</label>
                         <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                     </div>
 
-                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 transform hover:scale-[1.01]">
+                    <button type="submit" data-key="contact_btn_submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 transform hover:scale-[1.01]">
                         Mesaj Gonder
                     </button>
                     
-                    <p class="text-center text-xs text-gray-500">
-                        The data submitted here will be saved to your local SQLite database (`leads.db`).
-                        <br><a href="/leads.html" class="text-indigo-600 hover:text-indigo-800 font-semibold">View Leads Dashboard &rarr;</a>
-                    </p>
-                </form>
+                    </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-            <p class="mb-2">&copy; 2024 Your Name | All Rights Reserved.</p>
+            <p class="mb-2">&copy; 2024 <span data-key="footer_company">Makine Tasarim</span> | <span data-key="footer_rights">Her Hakki Saklidir.</span></p>
             <p class="text-gray-400">
-                Email: your.email@example.com | Phone: (555) 555-1234
+                Email: tamer5609@yahoo.com | Phone: () 
             </p>
-            <!-- Back to top link -->
-            <a href="#hero" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition duration-150">
+            <a href="#hero" data-key="footer_back_to_top" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition duration-150">
                 Back to Top
             </a>
         </div>
     </footer>
 
-    <!-- Simple JavaScript for Smooth Scroll (optional, as scroll-smooth is in HTML tag) -->
     <script>
+        const translations = {
+            'tr': {
+                'page_title': 'Tasarim & Muhendislik Hizmetleri | Your Name',
+                'nav_projects': 'Projeler',
+                'nav_services': 'Servisler',
+                'nav_about': 'Hakkimizda',
+                'nav_blog': 'Uzmanlık Yazıları',
+                'nav_contact_btn': 'Iletisim',
+                'hero_tag': 'Tasarim | Muhendislik | Inovasyon',
+                'hero_h1': 'Fikirleri Gercege Donusturme.',
+                'hero_p': 'Tasarım prensiplerinin sağlam mühendislik çözümleriyle kusursuz entegrasyonunda uzman danışmanlık ve geliştirme hizmetleri sunuyoruz',
+                'hero_btn_quote': 'Proje Teklifi Iste',
+                'hero_btn_product': 'Urun Tasarimi',
+                'projects_h2': 'Öne Çıkan Projeler',
+                'projects_p': 'Teknik ihtiyaclari ozel tasarımla birlestiren çalışmalardan ornekler.',
+                'proj1_title': 'Sabit ve Mobil Tesisler',
+                'proj1_desc': 'Cesitli Uretim kapasitelerinde Sabit ve Mobil Tesis Tasarimi.',
+                'proj2_title': 'Bant, Helezon,Silo',
+                'proj2_desc': 'Dozaj Sistemi,mikser,Bant Konveyor.',
+                'proj3_title': 'Ihtiyaca Gore Makine Tasarimi',
+                'proj3_desc': 'Makasli Liftler,Ozel Tasarim Forklift.',
+                'services_h2': 'Uzmanlik Alanimiz',
+                'services_p': 'Teknik ihtiyaclar dogrultusunda ozel tasarim hizmeti sunuyoruz.',
+                'serv1_title': 'Verimli calisan makinelerin tasarimi',
+                'serv1_desc': 'Kullanici dostu makine ve ekipman uretimi amacina yonelik ergonomik tasarim.',
+                'serv2_title': 'Urun Gelistirme',
+                'serv2_desc': 'Fiziksel ürünler için konsept çiziminden ve bilgisayar modellemesinden prototiplemeye ve üretim koordinasyonuna kadar proje destegi.',
+                'serv3_title': 'Arge Calismalari',
+                'serv3_desc': 'Kaliteli uretimi destekleyici ve teknik ihtiyaclara cevap verecek sekilde muhendislik hizmetleri.',
+                'about_h2': 'Hakkimizda',
+                'about_p': 'Makine ve ekipmanlarin verimli ve fonksiyonel calismasi ve celik konstruksiyon yapilarin emniyetli ve teknige uygun bir sekilde imalatini destekleyici tasarimlar yapma sorumluluguyla calisma ilkesini benimsiyoruz.',
+                'contact_h2': 'Bize Ulasin',
+                'contact_p': 'Bir projeniz mi var? Mesaj gönderin, size nasıl yardımcı olabileceğimizi konuşalım.',
+                'contact_label_name': 'Tam Isim',
+                'contact_label_tel': 'Telefon Numarası',
+                'contact_label_email': 'Email Adres',
+                'contact_label_message': 'Proje Detaylari / Mesaj',
+                'contact_btn_submit': 'Mesaj Gonder',
+                // Removed: 'contact_note_1': 'Bu iletilen veriler yerel SQLite veri tabanına (`leads.db`) kaydedilecektir.',
+                // Removed: 'contact_note_2': 'Projeleri Görüntüle &rarr;',
+                'footer_company': 'Makine Tasarim',
+                'footer_rights': 'Her Hakki Saklidir.',
+                'footer_back_to_top': 'Yukarı Çık'
+            },
+            'en': {
+                'page_title': 'Design & Engineering Services | Your Name',
+                'nav_projects': 'Projects',
+                'nav_services': 'Services',
+                'nav_about': 'About Us',
+                'nav_blog': 'Insights',
+                'nav_contact_btn': 'Contact',
+                'hero_tag': 'Design | Engineering | Innovation',
+                'hero_h1': 'Transforming Ideas into Reality.',
+                'hero_p': 'We offer expert consulting and development services in the seamless integration of design principles with robust engineering solutions.',
+                'hero_btn_quote': 'Request a Project Quote',
+                'hero_btn_product': 'Product Design',
+                'projects_h2': 'Featured Projects',
+                'projects_p': 'Examples of works that combine technical needs with specialized design.',
+                'proj1_title': 'Fixed and Mobile Facilities',
+                'proj1_desc': 'Design of Fixed and Mobile Facilities in various production capacities.',
+                'proj2_title': 'Conveyor, Screw, Silo',
+                'proj2_desc': 'Dosing System, Mixer, Belt Conveyor.',
+                'proj3_title': 'Custom Machine Design',
+                'proj3_desc': 'Scissor Lifts, Custom Design Forklifts.',
+                'services_h2': 'Our Area of Expertise',
+                'services_p': 'We offer specialized design services tailored to technical needs.',
+                'serv1_title': 'Design of Efficient Machines',
+                'serv1_desc': 'Ergonomic design aimed at producing user-friendly machinery and equipment.',
+                'serv2_title': 'Product Development',
+                'serv2_desc': 'Project support from concept drawing and computer modeling to prototyping and production coordination for physical products.',
+                'serv3_title': 'R&D Studies',
+                'serv3_desc': 'Engineering services supporting quality production and responding to technical needs.',
+                'about_h2': 'About Us',
+                'about_p': 'We adhere to the principle of working with the responsibility of creating designs that support the efficient and functional operation of machinery and equipment, and the safe and technically compliant manufacturing of steel structures.',
+                'contact_h2': 'Contact Us',
+                'contact_p': 'Do you have a project? Send us a message, and let\'s discuss how we can help you.',
+                'contact_label_name': 'Full Name',
+                'contact_label_tel': 'Telephone Number',
+                'contact_label_email': 'Email Address',
+                'contact_label_message': 'Project Details / Message',
+                'contact_btn_submit': 'Send Message',
+                // Removed: 'contact_note_1': 'The data submitted here will be saved to your local SQLite database (`leads.db`).',
+                // Removed: 'contact_note_2': 'View Leads Dashboard &rarr;',
+                'footer_company': 'Machine Design',
+                'footer_rights': 'All Rights Reserved.',
+                'footer_back_to_top': 'Back to Top'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'tr'; // Default to Turkish
+
+        function updateContent(lang) {
+            const dictionary = translations[lang];
+            
+            // 1. Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (dictionary[key]) {
+                    if (element.tagName === 'TITLE') {
+                        document.title = dictionary[key];
+                    } else if (element.tagName === 'LABEL') {
+                        // Keep the required-label structure intact
+                        element.innerHTML = dictionary[key];
+                    }
+                    else {
+                        element.textContent = dictionary[key];
+                    }
+                }
+            });
+            
+            // 2. Update button styles
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                button.classList.add('text-gray-700', 'hover:bg-gray-200');
+
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    button.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                }
+            });
+            
+            // 3. Update HTML language attribute
+            document.documentElement.lang = lang;
+
+            // 4. Save the preference
+            localStorage.setItem('lang', lang);
+        }
+
+        // Simple JavaScript for Smooth Scroll (original functionality preserved)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -244,7 +367,22 @@
                 }
             });
         });
+        
+        // Initialize content on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent(currentLang);
+
+            // Add event listeners to the language buttons
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const newLang = button.getAttribute('data-lang');
+                    if (newLang) {
+                        currentLang = newLang;
+                        updateContent(currentLang);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
-

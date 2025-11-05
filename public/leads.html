@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lead Submissions Dashboard</title>
+    <!-- Updated: Added data-key for localization -->
+    <title data-key="title">Lead Submissions Dashboard</title>
     <!-- Load Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -21,18 +22,26 @@
 <body class="bg-gray-50 text-gray-800 p-4 sm:p-8">
 
     <div class="max-w-7xl mx-auto">
+        
+        <!-- NEW: Language Selector -->
+        <div id="language-switcher" class="flex justify-end mb-6 space-x-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <button data-lang="tr" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">TR</button>
+            <button data-lang="en" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">EN</button>
+        </div>
+        
         <header class="mb-8">
-            <h1 class="text-4xl font-bold text-indigo-700">Project Leads Dashboard</h1>
-            <p class="text-lg text-gray-600 mt-2">All contact form submissions saved in the local `leads.db` database.</p>
+            <!-- Added data-key attributes -->
+            <h1 data-key="h1_title" class="text-4xl font-bold text-indigo-700">Project Leads Dashboard</h1>
+            <p data-key="p_message" class="text-lg text-gray-600 mt-2">All contact form submissions saved in the local `leads.db` database.</p>
             <!-- Link back to the main site -->
-            <a href="/" class="mt-3 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150">
+            <a href="/" data-key="a_home" class="mt-3 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition duration-150">
                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Back to Website
             </a>
         </header>
 
         <!-- Loading State -->
-        <div id="loading" class="text-center py-10 text-gray-500">
+        <div id="loading" data-key="loading" class="text-center py-10 text-gray-500">
             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
             Loading leads...
         </div>
@@ -43,11 +52,13 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project Details</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <!-- Added data-key attributes -->
+                            <th data-key="th_id" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th data-key="th_name" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th data-key="th_tel" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">tel</th>
+                            <th data-key="th_email" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            <th data-key="th_details" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project Details</th>
+                            <th data-key="th_date" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                         </tr>
                     </thead>
                     <tbody id="leads-table-body" class="bg-white divide-y divide-gray-200">
@@ -55,19 +66,115 @@
                     </tbody>
                 </table>
             </div>
-            <p id="no-leads" class="text-center text-gray-500 py-6 hidden">No leads have been submitted yet.</p>
+            <p id="no-leads" data-key="no_leads" class="text-center text-gray-500 py-6 hidden">No leads have been submitted yet.</p>
         </div>
 
         <!-- Error Message -->
-        <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mt-6 hidden" role="alert">
-            <strong class="font-bold">Error!</strong>
-            <span class="block sm:inline">Could not load data from the server. Please ensure the Node.js server is running on port 3000.</span>
+        <div id="error-message" data-key="error_msg" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mt-6 hidden" role="alert">
+            <strong data-key="error_strong">Error!</strong>
+            <span data-key="error_span" class="block sm:inline">Could not load data from the server. Please ensure the Node.js server is running on port 3000.</span>
         </div>
     </div>
 
+    <!-- NEW: Localization Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', fetchLeads);
+        const translations = {
+            'tr': {
+                'title': 'Projeler Kontrol Paneli',
+                'h1_title': 'Proje Kayıtları Kontrol Paneli',
+                'p_message': 'Yerel `leads.db` veri tabanına kaydedilen tüm iletişim formu gönderimleri.',
+                'a_home': 'Web Sitesine Geri Dön',
+                'loading': 'Kayıtlar yükleniyor...',
+                'th_id': 'ID',
+                'th_name': 'İsim',
+                'th_tel': 'Telefon',
+                'th_email': 'E-posta',
+                'th_details': 'Proje Detayları',
+                'th_date': 'Tarih',
+                'no_leads': 'Henüz hiçbir kayıt gönderilmedi.',
+                'error_msg': 'Hata!',
+                'error_strong': 'Hata!',
+                'error_span': 'Sunucudan veri yüklenemedi. Node.js sunucusunun 3000 portunda çalıştığından emin olun.',
+            },
+            'en': {
+                'title': 'Lead Submissions Dashboard',
+                'h1_title': 'Project Leads Dashboard',
+                'p_message': 'All contact form submissions saved in the local `leads.db` database.',
+                'a_home': 'Back to Website',
+                'loading': 'Loading leads...',
+                'th_id': 'ID',
+                'th_name': 'Name',
+                'th_tel': 'tel',
+                'th_email': 'Email',
+                'th_details': 'Project Details',
+                'th_date': 'Date',
+                'no_leads': 'No leads have been submitted yet.',
+                'error_msg': 'Error!',
+                'error_strong': 'Error!',
+                'error_span': 'Could not load data from the server. Please ensure the Node.js server is running on port 3000.',
+            }
+        };
 
+        let currentLang = localStorage.getItem('lang') || 'tr'; // Default to Turkish
+
+        function updateContent(lang) {
+            const dictionary = translations[lang];
+            
+            // 1. Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (dictionary[key]) {
+                    // Check if it's a specific element type or just text content
+                    if (element.tagName === 'TITLE') {
+                        document.title = dictionary[key];
+                    } else if (element.tagName === 'STRONG' && key === 'error_strong') {
+                         element.textContent = dictionary[key];
+                    } else if (element.tagName === 'DIV' && key === 'error_msg') {
+                        // Skip text update for the whole div
+                        return;
+                    }
+                    else {
+                        element.textContent = dictionary[key];
+                    }
+                }
+            });
+
+            // 2. Update button styles
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                button.classList.add('text-gray-700', 'hover:bg-gray-200');
+
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    button.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                }
+            });
+            
+            // 3. Update HTML language attribute
+            document.documentElement.lang = lang;
+
+            // 4. Save the preference
+            localStorage.setItem('lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize content on load before fetching leads
+            updateContent(currentLang);
+            fetchLeads();
+
+            // Add event listeners to the language buttons
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const newLang = button.getAttribute('data-lang');
+                    if (newLang) {
+                        currentLang = newLang;
+                        updateContent(currentLang);
+                    }
+                });
+            });
+        });
+        
+        // Existing fetchLeads function (kept outside DOMContentLoaded for clarity, but called inside)
         async function fetchLeads() {
             const loading = document.getElementById('loading');
             const container = document.getElementById('leads-container');
@@ -109,6 +216,7 @@
                         // ID, Name, Email (Cells 1, 2, 3)
                         row.insertCell().textContent = lead.id;
                         row.insertCell().textContent = lead.full_name;
+                        row.insertCell().textContent = lead.tel;
                         row.insertCell().textContent = lead.email_address;
 
                         // Project Details (Cell 4) - Snippet with full detail on hover
@@ -122,7 +230,7 @@
                         // Submission Date (Cell 5) - Formatted date and time
                         const dateCell = row.insertCell();
                         const date = new Date(lead.submission_date);
-                        dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        dateCell.textContent = date.toLocaleDateString(currentLang) + ' ' + date.toLocaleTimeString(currentLang, { hour: '2-digit', minute: '2-digit' });
                     });
 
                     return; // Exit function on success
@@ -142,4 +250,3 @@
     </script>
 </body>
 </html>
-

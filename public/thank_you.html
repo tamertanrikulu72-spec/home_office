@@ -1,9 +1,8 @@
-
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
+    <title data-key="title">Tesekkurler</title> 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -14,17 +13,93 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-10 rounded-xl shadow-2xl text-center max-w-md w-full">
-        <svg class="mx-auto h-16 w-16 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <h1 class="text-3xl font-bold text-gray-900 mt-4 mb-2">Thank You!</h1>
-        <p class="text-gray-600 mb-6">
-            Your project inquiry has been successfully submitted and saved to the database. We will be in touch shortly.
-        </p>
-        <a href="/" class="inline-block bg-indigo-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150">
-            Return to Homepage
-        </a>
+        
+        <div id="language-switcher" class="flex justify-end mb-4 space-x-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <button data-lang="tr" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">TR</button>
+            <button data-lang="en" class="lang-button text-xs px-2 py-1 rounded font-semibold transition duration-150">EN</button>
+        </div>
+
+        <svg class="mx-auto h-16 w-16 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        
+        <h1 data-key="h1_thank_you" class="mt-4 text-3xl font-bold text-gray-900">Tesekkurler!</h1>
+        <p data-key="p_message" class="mt-2 text-gray-600">Mesajiniz basariyla alindi. En kisa surede sizinle iletisime gececegiz.</p>
+        
+        <div class="mt-6">
+            <a href="/" data-key="a_home_button" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150">
+                Ana Sayfaya Don
+            </a>
+            </div>
     </div>
+
+    <script>
+        const translations = {
+            'tr': {
+                'title': 'Tesekkurler',
+                'h1_thank_you': 'Tesekkurler!',
+                'p_message': 'Mesajiniz basariyla alindi. En kisa surede sizinle iletisime gececegiz.',
+                'a_home_button': 'Ana Sayfaya Don'
+                // Removed: 'a_leads_link': 'Projeleri Goruntule &rarr;'
+            },
+            'en': {
+                'title': 'Thank You',
+                'h1_thank_you': 'Thank You!',
+                'p_message': 'Your message has been successfully received. We will contact you shortly.',
+                'a_home_button': 'Return to Home Page'
+                // Removed: 'a_leads_link': 'View Project Leads &rarr;'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'tr'; // Default to Turkish
+
+        function updateContent(lang) {
+            const dictionary = translations[lang];
+            
+            // 1. Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (dictionary[key]) {
+                    if (element.tagName === 'TITLE') {
+                        document.title = dictionary[key];
+                    } else {
+                        element.textContent = dictionary[key];
+                    }
+                }
+            });
+
+            // 2. Update button styles
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                button.classList.add('text-gray-700', 'hover:bg-gray-200');
+
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    button.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                }
+            });
+            
+            // 3. Update HTML language attribute
+            document.documentElement.lang = lang;
+
+            // 4. Save the preference
+            localStorage.setItem('lang', lang);
+        }
+
+        // Initialize content on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent(currentLang);
+
+            // Add event listeners to the language buttons
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const newLang = button.getAttribute('data-lang');
+                    if (newLang) {
+                        currentLang = newLang;
+                        updateContent(currentLang);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
