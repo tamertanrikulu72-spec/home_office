@@ -58,7 +58,7 @@ async function printAllLeads() {
                 console.log(`    Tel: ${lead.tel || 'N/A'}`);
                 console.log(`    Email: ${lead.email_address}`);
                 console.log(`    Submitted: ${dateString}`);
-                console.log(`    Details: ${lead.project_details ? lead.project_details.substring(0, 80) + (lead.project_details.length > 80 ? '...' : '') : 'N/A'}`);
+                console.log(`    Details: ${lead.project_details ? lead.project_details.substring(0, 1000) + (lead.project_details.length > 1000 ? '...' : '') : 'N/A'}`);
                 console.log('--------------------------------------------------');
             });
         }
