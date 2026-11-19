@@ -34,6 +34,7 @@ app.get('/api/pictures', (req, res) => {
 const mongoUri = process.env.MONGODB_URI || '';
 const mongoDbName = process.env.MONGODB_DB_NAME || 'home_office';
 const mongoCollectionName = process.env.MONGODB_COLLECTION || 'contact_messages';
+const messagesReadKey = process.env.MESSAGES_READ_KEY || '';
 
 let contactCollection = null;
 
@@ -99,6 +100,45 @@ app.post('/api/contact', async (req, res) => {
     } catch (err) {
         console.error('Error saving contact message to MongoDB:', err);
         return res.status(500).json({ ok: false, error: 'Failed to save message.' });
+    }
+});
+
+app.get('/api/messages', async (req, res) => {
+    const providedKey = String(req.headers['x-read-key'] || req.query.key || '').trim();
+
+    if (!messagesReadKey) {
+        return res.status(403).json({
+            ok: false,
+            error: 'MESSAGES_READ_KEY is not configured on the server.'
+        });
+    }
+
+    if (providedKey !== messagesReadKey) {
+        return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+    }
+
+    try {
+        const collection = await getContactCollection();
+        if (collection) {
+            const docs = await collection
+                .find({})
+                .sort({ id: -1 })
+                .toArray();
+            return res.json({ ok: true, storage: 'mongodb', messages: docs });
+        }
+
+        let messages = [];
+        if (fs.existsSync(messagesFile)) {
+            const raw = fs.readFileSync(messagesFile, 'utf8');
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+                messages = parsed.slice().reverse();
+            }
+        }
+        return res.json({ ok: true, storage: 'local-file', messages });
+    } catch (err) {
+        console.error('Error reading messages:', err);
+        return res.status(500).json({ ok: false, error: 'Failed to load messages.' });
     }
 });
 
