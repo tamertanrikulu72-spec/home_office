@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { MongoClient } = require('mongodb');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,24 +30,31 @@ app.get('/api/pictures', (req, res) => {
     });
 });
 
-// Store Contact Messages in Local JSON File
+// MongoDB Atlas Configuration
+const mongoUri = process.env.MONGODB_URI || '';
+const mongoDbName = process.env.MONGODB_DB_NAME || 'home_office';
+const mongoCollectionName = process.env.MONGODB_COLLECTION || 'contact_messages';
+
+let contactCollection = null;
+
+async function getContactCollection() {
+    if (!mongoUri) {
+        return null;
+    }
+    if (contactCollection) {
+        return contactCollection;
+    }
+    const client = new MongoClient(mongoUri);
+    await client.connect();
+    const db = client.db(mongoDbName);
+    contactCollection = db.collection(mongoCollectionName);
+    return contactCollection;
+}
+
+// Local JSON Fallback (used if MONGODB_URI is not configured)
 const messagesFile = path.join(__dirname, 'messages.json');
 
-app.post('/api/contact', (req, res) => {
-    const senderEmail = (req.body.email || '').trim();
-    const message = (req.body.message || '').trim();
-
-    if (!senderEmail || !message) {
-        return res.status(400).json({ ok: false, error: 'Email and message are required.' });
-    }
-
-    const entry = {
-        id: Date.now(),
-        email: senderEmail,
-        message: message,
-        receivedAt: new Date().toISOString()
-    };
-
+function saveMessageLocally(entry) {
     let messages = [];
     if (fs.existsSync(messagesFile)) {
         try {
@@ -61,17 +69,41 @@ app.post('/api/contact', (req, res) => {
     }
 
     messages.push(entry);
+    fs.writeFileSync(messagesFile, JSON.stringify(messages, null, 2), 'utf8');
+}
+
+app.post('/api/contact', async (req, res) => {
+    const senderEmail = (req.body.email || '').trim();
+    const message = (req.body.message || '').trim();
+
+    if (!senderEmail || !message) {
+        return res.status(400).json({ ok: false, error: 'Email and message are required.' });
+    }
+
+    const entry = {
+        id: Date.now(),
+        email: senderEmail,
+        message: message,
+        receivedAt: new Date().toISOString()
+    };
 
     try {
-        fs.writeFileSync(messagesFile, JSON.stringify(messages, null, 2), 'utf8');
-        res.json({ ok: true });
+        const collection = await getContactCollection();
+        if (collection) {
+            await collection.insertOne(entry);
+            return res.json({ ok: true, storage: 'mongodb' });
+        }
+
+        saveMessageLocally(entry);
+        return res.json({ ok: true, storage: 'local-file' });
     } catch (err) {
-        console.error('Error writing messages.json:', err);
-        res.status(500).json({ ok: false, error: 'Failed to save message.' });
+        console.error('Error saving contact message to MongoDB:', err);
+        return res.status(500).json({ ok: false, error: 'Failed to save message.' });
     }
 });
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log(`Serving pictures from: ${picturesPath}`);
+    console.log(`Contact storage mode: ${mongoUri ? `MongoDB Atlas (${mongoDbName}.${mongoCollectionName})` : 'Local messages.json'}`);
 });
