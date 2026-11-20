@@ -75,6 +75,7 @@ function saveMessageLocally(entry) {
 
 app.post('/api/contact', async (req, res) => {
     const senderEmail = (req.body.email || '').trim();
+    const phone = (req.body.phone || '').trim();
     const message = (req.body.message || '').trim();
 
     if (!senderEmail || !message) {
@@ -84,6 +85,7 @@ app.post('/api/contact', async (req, res) => {
     const entry = {
         id: Date.now(),
         email: senderEmail,
+        phone: phone,
         message: message,
         receivedAt: new Date().toISOString()
     };

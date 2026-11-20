@@ -240,6 +240,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="phone" data-i18n="formPhoneLabel">Telefon Numarası</label>
+                    <input type="tel" id="phone" name="phone" data-i18n-placeholder="formPhonePlaceholder" placeholder="+90 5XX XXX XX XX">
+                </div>
+
+                <div class="form-group">
                     <label for="message" data-i18n="formMessageLabel">Proje Detayları / Mesaj</label>
                     <textarea id="message" name="message" rows="5" data-i18n-placeholder="formMessagePlaceholder" placeholder="Projeniz veya talebiniz hakkında bilgi yazın..." required></textarea>
                 </div>
@@ -315,6 +320,8 @@
                 metaWebLabel: "Web:",
                 formEmailLabel: "E-posta Adresi",
                 formEmailPlaceholder: "ornek@firma.com",
+                formPhoneLabel: "Telefon Numarası",
+                formPhonePlaceholder: "+90 5XX XXX XX XX",
                 formMessageLabel: "Proje Detayları / Mesaj",
                 formMessagePlaceholder: "Projeniz veya talebiniz hakkında bilgi yazın...",
                 formSubmit: "Mesaj Gönder",
@@ -376,6 +383,8 @@
                 metaWebLabel: "Website:",
                 formEmailLabel: "Email Address",
                 formEmailPlaceholder: "name@company.com",
+                formPhoneLabel: "Phone Number",
+                formPhonePlaceholder: "+90 5XX XXX XX XX",
                 formMessageLabel: "Project Details / Message",
                 formMessagePlaceholder: "Describe your project or inquiry...",
                 formSubmit: "Send Message",
@@ -551,6 +560,7 @@
 
             const payload = {
                 email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
                 message: document.getElementById("message").value.trim()
             };
 
