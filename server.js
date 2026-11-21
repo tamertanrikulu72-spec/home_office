@@ -8,6 +8,35 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Serve robots.txt and sitemap.xml explicitly for search engine crawlers
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send(
+        'User-agent: *\n' +
+        'Allow: /\n\n' +
+        'Sitemap: https://yenimakinetasarim.com/sitemap.xml\n' +
+        'Sitemap: https://yenimakinetasarim.com.tr/sitemap.xml\n'
+    );
+});
+
+app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yenimakinetasarim.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yenimakinetasarim.com.tr/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`);
+});
+
 app.use(express.static(__dirname));
 
 // Find pictures folder (checks ../pictures first, then ./pictures)
