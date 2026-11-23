@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="elecPageTitle">Elektronik &amp; Devre Çözümleri | İçindekiler</title>
+    <meta name="description" content="Öğrenciler için dinamik konu listeli devre analizi ve elektronik çözümleri.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="style_3.css">
+    <style>
+        .toc-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 10px;
+        }
+        .toc-item {
+            text-align: left;
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 10px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .toc-item:hover,
+        .toc-item.active {
+            background-color: var(--surface);
+            border-color: var(--accent);
+        }
+        .toc-num {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .toc-title {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        .toc-desc {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+        .btn-outline {
+            background-color: var(--surface);
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <span data-i18n="elecTopTag">Öğrenciler İçin Devre Analizi ve Elektronik Çözümleri</span>
+            <span>
+                <a href="index.html" data-i18n="backToMain">Ana Sayfaya Dön</a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="electronics.html" id="brand-toc-link" class="brand">DEVRE <span>ELEKTRONİK</span></a>
+
+            <div class="nav-right">
+                <nav aria-label="Electronics Navigation">
+                    <ul class="nav-links" id="elec-nav-links">
+                        <li><a href="#toc" id="nav-toc-link" data-i18n="navToc">İçindekiler</a></li>
+                        <li><a href="index.html" data-i18n="navMainSite">Makine &amp; Tesisler</a></li>
+                    </ul>
+                </nav>
+
+                <div class="lang-switch" role="group" aria-label="Language Selector">
+                    <button type="button" class="lang-btn active" data-lang="tr">TR</button>
+                    <button type="button" class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="elec-hero">
+        <div class="container">
+            <span class="hero-tag" data-i18n="elecHeroTag">ELEKTRONİK &amp; DEVRE ANALİZİ</span>
+            <h1 id="elec-hero-title" data-i18n="tocHeading">Konu İçindekileri</h1>
+            <p id="elec-hero-desc" data-i18n="tocSubdesc">İncelemek istediğiniz elektronik konusunu seçin. Yeni konular eklendikçe liste otomatik güncellenir.</p>
+        </div>
+    </section>
+
+    <!-- Dynamic Table of Contents View -->
+    <section id="toc-section" class="section">
+        <div class="container">
+            <div id="toc-grid" class="toc-grid" role="list"></div>
+        </div>
+    </section>
+
+    <!-- Selected Topic Detail View -->
+    <section id="topic-detail-section" class="section" hidden>
+        <div class="container">
+            <div class="toc-bar">
+                <button type="button" id="back-to-toc-btn" class="btn btn-outline" data-i18n="btnBackToToc">&larr; İçindekilere Dön</button>
+                <div id="topic-quick-switcher" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+            </div>
+
+            <div class="electronics-grid">
+                <!-- Fixed-Bias Step-by-Step Analysis & Inputs -->
+                <article id="fixed-bias" class="elec-card">
+                    <h2 data-i18n="fbTitle">Giriş, Çıkış ve Terminal Gerilimleri Analizi</h2>
+                    <p class="elec-summary" data-i18n="fbSummary">Baz-emiter giriş çevresi ve kollektör-emiter çıkış çevresi için KVL uygulayarak $I_B$, $I_C$, $V_{CE}$ ve terminal gerilimlerini teorik olarak inceleyin.</p>
+
+                    <figure class="elec-schematic">
+                        <img src="/pictures/electronics/dc_bjt_bias.jpg" alt="Sabit kutuplamalı BJT devre şeması" loading="lazy">
+                        <figcaption data-i18n="fbFigCaption">Şekil 1: Sabit kutuplamalı BJT devre şeması (dc_bjt_bias.jpg)</figcaption>
+                    </figure>
+
+                    <ol class="elec-steps">
+                        <li><strong data-i18n="fbStep1">Giriş Çevresi (Baz Akımı):</strong> $$+V_{CC} - I_B R_B - V_{BE} = 0 \implies I_B = \frac{V_{CC} - V_{BE}}{R_B}$$</li>
+                        <li><strong data-i18n="fbStep2">Çıkış Çevresi ($I_C$ ve $V_{CE}$):</strong> $$I_C = \beta I_B, \quad +V_{CC} - I_C R_C - V_{CE} = 0 \implies V_{CE} = V_{CC} - I_C R_C$$</li>
+                        <li><strong data-i18n="fbStep3">Terminal Gerilimleri:</strong> $$V_E = 0\text{ V}, \quad V_B = V_{CC} - I_B R_B = V_{BE}, \quad V_C = V_{CC} - I_C R_C = V_{CE}$$</li>
+                    </ol>
+
+                    <div class="elec-calc-grid">
+                        <div>
+                            <label for="fb-vcc">V<sub>CC</sub> (V)</label>
+                            <input type="number" id="fb-vcc" value="12" step="0.1">
+                        </div>
+                        <div>
+                            <label for="fb-vbe">V<sub>BE</sub> (V)</label>
+                            <input type="number" id="fb-vbe" value="0.7" step="0.05">
+                        </div>
+                        <div>
+                            <label for="fb-rb">R<sub>B</sub> (k&Omega;)</label>
+                            <input type="number" id="fb-rb" value="240" step="1">
+                        </div>
+                        <div>
+                            <label for="fb-rc">R<sub>C</sub> (k&Omega;)</label>
+                            <input type="number" id="fb-rc" value="2.2" step="0.1">
+                        </div>
+                        <div>
+                            <label for="fb-beta">&beta;</label>
+                            <input type="number" id="fb-beta" value="100" step="1">
+                        </div>
+                    </div>
+
+                    <div class="elec-actions">
+                        <button type="button" id="calc-btn" class="btn btn-primary" data-i18n="btnCalculate">Sonuçları Göster</button>
+                    </div>
+                    <div id="fb-result" class="elec-result" aria-live="polite" hidden></div>
+                </article>
+
+                <!-- Load-Line Analysis (Fig. 9-3) & Optimum Design -->
+                <article id="load-line" class="elec-card">
+                    <h2 data-i18n="llTitle">Yük Doğrusu (Fig. 9-3), Kesim / Doyum ve Optimum Tasarım</h2>
+                    <p class="elec-summary" data-i18n="llSummary">DC yük doğrusunun uç noktalarını ($I_{C(\text{sat})}$ ve $V_{CE(\text{off})}$), Q-noktasını ve simetrik salınım için optimum tasarım bağıntılarını inceleyin.</p>
+
+                    <figure class="elec-schematic">
+                        <img src="/pictures/electronics/dc_bjt_bias_gr.jpg" alt="Fig. 9-3 BJT kollektör karakteristik eğrileri, DC yük doğrusu ve Q-noktası" loading="lazy">
+                        <figcaption data-i18n="llFigCaption">Şekil 2: Fig. 9-3 DC Yük Doğrusu ve Q-Noktası Grafiği (dc_bjt_bias_gr.jpg)</figcaption>
+                    </figure>
+
+                    <ol class="elec-steps">
+                        <li><strong data-i18n="llStep1">Kesim Bölgesi ($I_B = 0$):</strong> $$V_{CE}\big|_{I_C = 0} = V_{CC}$$</li>
+                        <li><strong data-i18n="llStep2">Doyum Bölgesi ($V_{CE} \approx 0\text{ V}$):</strong> $$I_C\big|_{V_{CE} = 0} = \frac{V_{CC}}{R_C}$$</li>
+                        <li><strong data-i18n="llStep3">Optimum Tasarım:</strong> $$V_{CEQ} = \frac{1}{2} V_{CC}, \quad I_{CQ} = \frac{1}{2} I_{C(\text{sat})} = \frac{V_{CC}}{2 R_C}$$</li>
+                    </ol>
+
+                    <div id="ll-result" class="elec-result" aria-live="polite" hidden></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>&copy; <span id="year">2026</span> | <span data-i18n="footerRights">Her Hakkı Saklıdır.</span></p>
+            <div class="footer-links">
+                <a href="index.html" data-i18n="backToMain">Ana Sayfaya Dön</a>
+                <a href="#top" class="scroll-top" data-i18n="backToTop">Yukarı Çık</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Yeni konular eklendikçe bu diziye yeni bir nesne eklemeniz yeterlidir */
+        const electronicsTopics = [
+            {
+                id: "fixed-bias-bjt",
+                code: "KONU 01",
+                tr: {
+                    title: "1. Sabit Kutuplamalı BJT Devresi (Fixed-Bias Circuit)",
+                    shortDesc: "Giriş-çıkış çevresi, terminal gerilimleri, yük doğrusu (Fig. 9-3) ve Q-noktası hesabı."
+                },
+                en: {
+                    title: "1. Fixed-Bias BJT Circuit",
+                    shortDesc: "Input/output loops, terminal voltages, load line (Fig. 9-3), and Q-point calculation."
+                }
+            }
+        ];
+
+        const elecTranslations = {
+            tr: {
+                elecPageTitle: "Elektronik & Devre Çözümleri | İçindekiler",
+                elecTopTag: "Öğrenciler İçin Devre Analizi ve Elektronik Çözümleri",
+                backToMain: "Ana Sayfaya Dön",
+                navToc: "İçindekiler",
+                navMainSite: "Makine & Tesisler",
+                elecHeroTag: "ELEKTRONİK & DEVRE ANALİZİ",
+                tocHeading: "Konu İçindekileri",
+                tocSubdesc: "İncelemek istediğiniz elektronik konusunu seçin. Yeni konular eklendikçe liste otomatik güncellenir.",
+                btnBackToToc: "← İçindekilere Dön",
+                fbTitle: "Giriş, Çıkış ve Terminal Gerilimleri Analizi",
+                fbSummary: "Baz-emiter giriş çevresi ve kollektör-emiter çıkış çevresi için KVL uygulayarak I_B, I_C, V_CE ve terminal gerilimlerini teorik olarak inceleyin.",
+                fbFigCaption: "Şekil 1: Sabit kutuplamalı BJT devre şeması (dc_bjt_bias.jpg)",
+                fbStep1: "Giriş Çevresi (Baz Akımı):",
+                fbStep2: "Çıkış Çevresi (I_C ve V_CE):",
+                fbStep3: "Terminal Gerilimleri:",
+                btnCalculate: "Sonuçları Göster",
+                llTitle: "Yük Doğrusu (Fig. 9-3), Kesim / Doyum ve Optimum Tasarım",
+                llSummary: "DC yük doğrusunun uç noktalarını, Q-noktasını ve simetrik salınım için optimum tasarım bağıntılarını inceleyin.",
+                llFigCaption: "Şekil 2: Fig. 9-3 DC Yük Doğrusu ve Q-Noktası Grafiği (dc_bjt_bias_gr.jpg)",
+                llStep1: "Kesim Bölgesi (I_B = 0):",
+                llStep2: "Doyum Bölgesi (V_CE ≈ 0 V):",
+                llStep3: "Optimum Tasarım:",
+                footerRights: "Her Hakkı Saklıdır.",
+                backToTop: "Yukarı Çık"
+            },
+            en: {
+                elecPageTitle: "Electronics & Circuit Solutions | Table of Contents",
+                elecTopTag: "Circuit Analysis & Electronics Solutions for Students",
+                backToMain: "Back to Main Site",
+                navToc: "Contents",
+                navMainSite: "Machinery & Plants",
+                elecHeroTag: "ELECTRONICS & CIRCUIT ANALYSIS",
+                tocHeading: "Table of Contents",
+                tocSubdesc: "Select an electronics topic to open. The list updates automatically as new topics are added.",
+                btnBackToToc: "← Back to Contents",
+                fbTitle: "Input, Output & Terminal Voltages Analysis",
+                fbSummary: "Review KVL derivations around the base-emitter input loop and collector-emitter output loop for I_B, I_C, V_CE, and terminal voltages.",
+                fbFigCaption: "Figure 1: Fixed-bias BJT circuit schematic (dc_bjt_bias.jpg)",
+                fbStep1: "Input Loop (Base Current):",
+                fbStep2: "Output Loop (I_C and V_CE):",
+                fbStep3: "Terminal Voltages:",
+                btnCalculate: "Show Results",
+                llTitle: "Load Line (Fig. 9-3), Cutoff / Saturation & Optimum Design",
+                llSummary: "Review DC load-line endpoints, Q-point, and optimum design equations for symmetrical swing.",
+                llFigCaption: "Figure 2: Fig. 9-3 DC Load-Line & Q-Point Graph (dc_bjt_bias_gr.jpg)",
+                llStep1: "Cutoff Region (I_B = 0):",
+                llStep2: "Saturation Region (V_CE ≈ 0 V):",
+                llStep3: "Optimum Design:",
+                footerRights: "All Rights Reserved.",
+                backToTop: "Back to Top"
+            }
+        };
+
+        let currentLang = localStorage.getItem("siteLang") || "tr";
+        let activeTopicId = null;
+        let resultsVisible = false;
+
+        function renderMath() {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body);
+            }
+        }
+
+        function renderNumericalResults() {
+            const fbOut = document.getElementById("fb-result");
+            const llOut = document.getElementById("ll-result");
+
+            if (!resultsVisible) {
+                fbOut.hidden = true;
+                llOut.hidden = true;
+                fbOut.innerHTML = "";
+                llOut.innerHTML = "";
+                return;
+            }
+
+            const vcc = parseFloat(document.getElementById("fb-vcc").value) || 0;
+            const vbe = parseFloat(document.getElementById("fb-vbe").value) || 0;
+            const rb = (parseFloat(document.getElementById("fb-rb").value) || 0) * 1e3;
+            const rc = (parseFloat(document.getElementById("fb-rc").value) || 0) * 1e3;
+            const beta = Math.max(0, parseFloat(document.getElementById("fb-beta").value) || 0);
+
+            const ib = rb > 0 ? Math.max(0, (vcc - vbe) / rb) : 0;
+            const icSat = rc > 0 ? vcc / rc : 0;
+            const icActive = beta * ib;
+            const isSaturated = icActive >= icSat && icSat > 0;
+            const ic = isSaturated ? icSat : icActive;
+            const vceRaw = vcc - ic * rc;
+            const vce = Math.max(0, vceRaw);
+
+            const vb = ib === 0 ? vcc : vbe;
+            const vc = vce;
+            const ve = 0;
+
+            const region = currentLang === "tr"
+                ? (isSaturated || vceRaw <= 0.2 ? "Doyum" : (ic === 0 ? "Kesim" : "Aktif"))
+                : (isSaturated || vceRaw <= 0.2 ? "Saturation" : (ic === 0 ? "Cutoff" : "Active"));
+
+            fbOut.innerHTML =
+                `I<sub>B</sub> = ${(ib * 1e6).toFixed(2)} &mu;A | I<sub>C</sub> = ${(ic * 1e3).toFixed(2)} mA | ` +
+                `V<sub>CE</sub> = ${vce.toFixed(2)} V (${region})<br>` +
+                `V<sub>B</sub> = ${vb.toFixed(2)} V | V<sub>C</sub> = ${vc.toFixed(2)} V | V<sub>E</sub> = ${ve.toFixed(2)} V`;
+            fbOut.hidden = false;
+
+            const optVce = 0.5 * vcc;
+            const optIc = 0.5 * icSat;
+            llOut.innerHTML =
+                `V<sub>CE(cutoff)</sub> = ${vcc.toFixed(2)} V | I<sub>C(sat)</sub> = ${(icSat * 1e3).toFixed(2)} mA<br>` +
+                `Optimum: V<sub>CEQ</sub> = ${optVce.toFixed(2)} V, I<sub>CQ</sub> = ${(optIc * 1e3).toFixed(2)} mA`;
+            llOut.hidden = false;
+        }
+
+        function renderTableOfContents() {
+            const tocGrid = document.getElementById("toc-grid");
+            const switcher = document.getElementById("topic-quick-switcher");
+            tocGrid.innerHTML = "";
+            switcher.innerHTML = "";
+
+            electronicsTopics.forEach((topic, idx) => {
+                const localized = topic[currentLang] || topic.tr;
+                const numLabel = topic.code || `${idx + 1}`;
+
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "toc-item" + (activeTopicId === topic.id ? " active" : "");
+                btn.innerHTML =
+                    `<span class="toc-num">${numLabel}</span>` +
+                    `<span class="toc-title">${localized.title}</span>` +
+                    `<span class="toc-desc">${localized.shortDesc}</span>`;
+                btn.addEventListener("click", () => selectTopic(topic.id));
+                tocGrid.appendChild(btn);
+
+                const quickBtn = document.createElement("button");
+                quickBtn.type = "button";
+                quickBtn.className = "btn " + (activeTopicId === topic.id ? "btn-primary" : "btn-outline");
+                quickBtn.textContent = localized.title;
+                quickBtn.addEventListener("click", () => selectTopic(topic.id));
+                switcher.appendChild(quickBtn);
+            });
+        }
+
+        function syncHeroWithView() {
+            const dict = elecTranslations[currentLang];
+            const heroTitle = document.getElementById("elec-hero-title");
+            const heroDesc = document.getElementById("elec-hero-desc");
+            const tocSection = document.getElementById("toc-section");
+            const detailSection = document.getElementById("topic-detail-section");
+
+            const activeTopic = electronicsTopics.find(t => t.id === activeTopicId);
+
+            if (!activeTopic) {
+                tocSection.hidden = false;
+                detailSection.hidden = true;
+                heroTitle.textContent = dict.tocHeading;
+                heroDesc.textContent = dict.tocSubdesc;
+            } else {
+                const loc = activeTopic[currentLang] || activeTopic.tr;
+                tocSection.hidden = true;
+                detailSection.hidden = false;
+                heroTitle.textContent = loc.title;
+                heroDesc.textContent = loc.shortDesc;
+            }
+        }
+
+        function selectTopic(topicId) {
+            activeTopicId = topicId || null;
+            syncHeroWithView();
+            renderTableOfContents();
+            renderMath();
+            renderNumericalResults();
+        }
+
+        function applyLanguage(lang) {
+            currentLang = elecTranslations[lang] ? lang : "tr";
+            localStorage.setItem("siteLang", currentLang);
+            document.documentElement.lang = currentLang;
+
+            const dict = elecTranslations[currentLang];
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (dict[key] !== undefined) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            document.querySelectorAll(".lang-btn").forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.lang === currentLang);
+            });
+
+            renderTableOfContents();
+            syncHeroWithView();
+            renderMath();
+            renderNumericalResults();
+        }
+
+        document.getElementById("brand-toc-link").addEventListener("click", (e) => {
+            e.preventDefault();
+            selectTopic(null);
+        });
+
+        document.getElementById("nav-toc-link").addEventListener("click", (e) => {
+            e.preventDefault();
+            selectTopic(null);
+        });
+
+        document.getElementById("back-to-toc-btn").addEventListener("click", () => {
+            selectTopic(null);
+        });
+
+        document.getElementById("calc-btn").addEventListener("click", () => {
+            resultsVisible = true;
+            renderNumericalResults();
+        });
+
+        document.querySelectorAll("input").forEach(input => {
+            input.addEventListener("input", () => {
+                if (resultsVisible) {
+                    renderNumericalResults();
+                }
+            });
+        });
+
+        document.querySelectorAll(".lang-btn").forEach(btn => {
+            btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+        });
+
+        /* Sayfa ilk açıldığında doğrudan İçindekiler görünümü açılır */
+        applyLanguage(currentLang);
+    </script>
+</body>
+</html>
