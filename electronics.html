@@ -72,6 +72,10 @@
         .topic-panel[hidden] {
             display: none !important;
         }
+        #voltage-divider .elec-schematic img {
+            max-width: 25%;
+            height: auto;
+        }
     </style>
 </head>
 <body id="top">
@@ -128,12 +132,10 @@
         <div class="container">
             <div class="toc-bar">
                 <button type="button" id="back-to-toc-btn" class="btn btn-outline" data-i18n="btnBackToToc">&larr; İçindekilere Dön</button>
-                <div id="topic-quick-switcher" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
             </div>
 
             <!-- TOPIC 1: Fixed-Bias BJT Circuit -->
-            <div id="panel-fixed-bias-bjt" class="electronics-grid topic-panel">
-                <!-- Fixed-Bias Step-by-Step Analysis & Inputs -->
+            <div id="panel-fixed-bias-bjt" class="electronics-grid topic-panel" hidden>
                 <article id="fixed-bias" class="elec-card">
                     <h2 data-i18n="fbTitle">Giriş, Çıkış ve Terminal Gerilimleri Analizi</h2>
                     <p class="elec-summary" data-i18n="fbSummary">Baz-emiter giriş çevresi ve kollektör-emiter çıkış çevresi için KVL uygulayarak $I_B$, $I_C$, $V_{CE}$ ve terminal gerilimlerini teorik olarak inceleyin.</p>
@@ -178,7 +180,6 @@
                     <div id="fb-result" class="elec-result" aria-live="polite" hidden></div>
                 </article>
 
-                <!-- Load-Line Analysis (Fig. 9-3) & Optimum Design -->
                 <article id="load-line" class="elec-card">
                     <h2 data-i18n="llTitle">Yük Doğrusu (Fig. 9-3), Kesim / Doyum ve Optimum Tasarım</h2>
                     <p class="elec-summary" data-i18n="llSummary">DC yük doğrusunun uç noktalarını ($I_{C(\text{sat})}$ ve $V_{CE(\text{off})}$), Q-noktasını ve simetrik salınım için optimum tasarım bağıntılarını inceleyin.</p>
@@ -200,7 +201,6 @@
 
             <!-- TOPIC 2: Voltage-Divider Bias BJT Circuit (Figure 8-5) -->
             <div id="panel-voltage-divider-bjt" class="electronics-grid topic-panel" hidden>
-                <!-- Voltage-Divider Step-by-Step Analysis & Inputs -->
                 <article id="voltage-divider" class="elec-card">
                     <h2 data-i18n="vdTitle">Gerilim Bölücü Kutuplama ve Terminal Gerilimleri Analizi</h2>
                     <p class="elec-summary" data-i18n="vdSummary">Baz giriş direnci ($R_{IN(\text{base})}$) koşulunu kontrol ederek $V_B$, $V_E$, $I_E$, $I_C$, $V_C$ ve $V_{CE}$ değerlerini hesaplayın.</p>
@@ -253,7 +253,6 @@
                     <div id="vd-result" class="elec-result" aria-live="polite" hidden></div>
                 </article>
 
-                <!-- Voltage-Divider Thevenin & DC Load-Line Summary -->
                 <article id="vd-load-line" class="elec-card">
                     <h2 data-i18n="vdLlTitle">Thevenin Eşdeğeri, Kesim / Doyum ve Q-Noktası</h2>
                     <p class="elec-summary" data-i18n="vdLlSummary">$R_{IN(\text{base})} \ge 10 R_2$ sağlanmadığında kullanılan tam Thevenin analizi ile DC yük doğrusu uç noktalarını ($V_{CE(\text{off})}$ ve $I_{C(\text{sat})}$) inceleyin.</p>
@@ -475,12 +474,10 @@
             const vth = (r1 + r2) > 0 ? (r2 / (r1 + r2)) * vcc : 0;
             const rth = (r1 + r2) > 0 ? (r1 * r2) / (r1 + r2) : 0;
 
-            // Approximate method (standard textbook approach when R_IN(base) >= 10 R_2)
             const vbApprox = vth;
             const veApprox = Math.max(0, vbApprox - vbe);
             const ieApprox = re > 0 ? veApprox / re : 0;
 
-            // Exact Thevenin method
             const denomExact = rth + (beta + 1) * re;
             const ibExact = denomExact > 0 ? Math.max(0, (vth - vbe) / denomExact) : 0;
             const icExact = beta * ibExact;
@@ -490,7 +487,6 @@
 
             const vb = approxValid ? vbApprox : vbExact;
             const ve = approxValid ? veApprox : veExact;
-            const ie = approxValid ? ieApprox : ieExact;
 
             const icSat = (rc + re) > 0 ? vcc / (rc + re) : 0;
             const icActive = approxValid ? ieApprox : icExact;
@@ -537,9 +533,7 @@
 
         function renderTableOfContents() {
             const tocGrid = document.getElementById("toc-grid");
-            const switcher = document.getElementById("topic-quick-switcher");
             tocGrid.innerHTML = "";
-            switcher.innerHTML = "";
 
             electronicsTopics.forEach((topic, idx) => {
                 const localized = topic[currentLang] || topic.tr;
@@ -554,13 +548,6 @@
                     `<span class="toc-desc">${localized.shortDesc}</span>`;
                 btn.addEventListener("click", () => selectTopic(topic.id));
                 tocGrid.appendChild(btn);
-
-                const quickBtn = document.createElement("button");
-                quickBtn.type = "button";
-                quickBtn.className = "btn " + (activeTopicId === topic.id ? "btn-primary" : "btn-outline");
-                quickBtn.textContent = localized.title;
-                quickBtn.addEventListener("click", () => selectTopic(topic.id));
-                switcher.appendChild(quickBtn);
             });
         }
 
