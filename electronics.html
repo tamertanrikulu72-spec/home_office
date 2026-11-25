@@ -69,6 +69,9 @@
             border-color: var(--accent);
             color: var(--accent);
         }
+        .topic-panel[hidden] {
+            display: none !important;
+        }
     </style>
 </head>
 <body id="top">
@@ -128,7 +131,8 @@
                 <div id="topic-quick-switcher" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
             </div>
 
-            <div class="electronics-grid">
+            <!-- TOPIC 1: Fixed-Bias BJT Circuit -->
+            <div id="panel-fixed-bias-bjt" class="electronics-grid topic-panel">
                 <!-- Fixed-Bias Step-by-Step Analysis & Inputs -->
                 <article id="fixed-bias" class="elec-card">
                     <h2 data-i18n="fbTitle">Giriş, Çıkış ve Terminal Gerilimleri Analizi</h2>
@@ -193,6 +197,76 @@
                     <div id="ll-result" class="elec-result" aria-live="polite" hidden></div>
                 </article>
             </div>
+
+            <!-- TOPIC 2: Voltage-Divider Bias BJT Circuit (Figure 8-5) -->
+            <div id="panel-voltage-divider-bjt" class="electronics-grid topic-panel" hidden>
+                <!-- Voltage-Divider Step-by-Step Analysis & Inputs -->
+                <article id="voltage-divider" class="elec-card">
+                    <h2 data-i18n="vdTitle">Gerilim Bölücü Kutuplama ve Terminal Gerilimleri Analizi</h2>
+                    <p class="elec-summary" data-i18n="vdSummary">Baz giriş direnci ($R_{IN(\text{base})}$) koşulunu kontrol ederek $V_B$, $V_E$, $I_E$, $I_C$, $V_C$ ve $V_{CE}$ değerlerini hesaplayın.</p>
+
+                    <figure class="elec-schematic">
+                        <img src="/pictures/electronics/dc_bjt_v_div.jpg" alt="Figure 8-5 Gerilim bölücü kutuplamalı BJT devre şeması" loading="lazy">
+                        <figcaption data-i18n="vdFigCaption">Şekil 1: Gerilim bölücü kutuplamalı BJT devre şeması - Figure 8-5 (dc_bjt_v_div.jpg)</figcaption>
+                    </figure>
+
+                    <ol class="elec-steps">
+                        <li><strong data-i18n="vdStep1">Baz Giriş Direnci ve $V_B$ (Yaklaşık / Tam):</strong> $$R_{IN(\text{base})} = \beta_{dc} R_E, \quad V_B \approx \left(\frac{R_2}{R_1 + R_2}\right) V_{CC} \quad (R_{IN(\text{base})} \ge 10 R_2)$$</li>
+                        <li><strong data-i18n="vdStep2">Emiter ve Kollektör Akımları:</strong> $$V_E = V_B - V_{BE}, \quad I_E = \frac{V_E}{R_E}, \quad I_C \approx I_E$$</li>
+                        <li><strong data-i18n="vdStep3">Kollektör ve $V_{CE}$ Gerilimleri:</strong> $$V_C = V_{CC} - I_C R_C, \quad V_{CE} = V_C - V_E = V_{CC} - I_C(R_C + R_E)$$</li>
+                    </ol>
+
+                    <div class="elec-calc-grid">
+                        <div>
+                            <label for="vd-vcc">V<sub>CC</sub> (V)</label>
+                            <input type="number" id="vd-vcc" value="10" step="0.1">
+                        </div>
+                        <div>
+                            <label for="vd-vbe">V<sub>BE</sub> (V)</label>
+                            <input type="number" id="vd-vbe" value="0.7" step="0.05">
+                        </div>
+                        <div>
+                            <label for="vd-r1">R<sub>1</sub> (k&Omega;)</label>
+                            <input type="number" id="vd-r1" value="10" step="0.1">
+                        </div>
+                        <div>
+                            <label for="vd-r2">R<sub>2</sub> (k&Omega;)</label>
+                            <input type="number" id="vd-r2" value="2.2" step="0.1">
+                        </div>
+                        <div>
+                            <label for="vd-rc">R<sub>C</sub> (k&Omega;)</label>
+                            <input type="number" id="vd-rc" value="3.6" step="0.1">
+                        </div>
+                        <div>
+                            <label for="vd-re">R<sub>E</sub> (k&Omega;)</label>
+                            <input type="number" id="vd-re" value="1" step="0.1">
+                        </div>
+                        <div>
+                            <label for="vd-beta">&beta;<sub>dc</sub></label>
+                            <input type="number" id="vd-beta" value="200" step="1">
+                        </div>
+                    </div>
+
+                    <div class="elec-actions">
+                        <button type="button" id="vd-calc-btn" class="btn btn-primary" data-i18n="btnCalculate">Sonuçları Göster</button>
+                    </div>
+                    <div id="vd-result" class="elec-result" aria-live="polite" hidden></div>
+                </article>
+
+                <!-- Voltage-Divider Thevenin & DC Load-Line Summary -->
+                <article id="vd-load-line" class="elec-card">
+                    <h2 data-i18n="vdLlTitle">Thevenin Eşdeğeri, Kesim / Doyum ve Q-Noktası</h2>
+                    <p class="elec-summary" data-i18n="vdLlSummary">$R_{IN(\text{base})} \ge 10 R_2$ sağlanmadığında kullanılan tam Thevenin analizi ile DC yük doğrusu uç noktalarını ($V_{CE(\text{off})}$ ve $I_{C(\text{sat})}$) inceleyin.</p>
+
+                    <ol class="elec-steps">
+                        <li><strong data-i18n="vdLlStep1">Tam Thevenin Eşdeğeri:</strong> $$V_{TH} = \left(\frac{R_2}{R_1 + R_2}\right) V_{CC}, \quad R_{TH} = R_1 \parallel R_2, \quad I_B = \frac{V_{TH} - V_{BE}}{R_{TH} + (\beta_{dc} + 1)R_E}$$</li>
+                        <li><strong data-i18n="vdLlStep2">Kesim Bölgesi ($I_C = 0$):</strong> $$V_{CE(\text{off})} = V_{CC}$$</li>
+                        <li><strong data-i18n="vdLlStep3">Doyum Bölgesi ($V_{CE} \approx 0\text{ V}$):</strong> $$I_{C(\text{sat})} = \frac{V_{CC}}{R_C + R_E}$$</li>
+                    </ol>
+
+                    <div id="vd-ll-result" class="elec-result" aria-live="polite" hidden></div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -212,6 +286,7 @@
         const electronicsTopics = [
             {
                 id: "fixed-bias-bjt",
+                panelId: "panel-fixed-bias-bjt",
                 code: "KONU 01",
                 tr: {
                     title: "1. Sabit Kutuplamalı BJT Devresi (Fixed-Bias Circuit)",
@@ -220,6 +295,19 @@
                 en: {
                     title: "1. Fixed-Bias BJT Circuit",
                     shortDesc: "Input/output loops, terminal voltages, load line (Fig. 9-3), and Q-point calculation."
+                }
+            },
+            {
+                id: "voltage-divider-bjt",
+                panelId: "panel-voltage-divider-bjt",
+                code: "KONU 02",
+                tr: {
+                    title: "2. Gerilim Bölücü Kutuplamalı BJT Devresi (Voltage-Divider Bias)",
+                    shortDesc: "R_IN(base) kontrolü, V_B, V_E, I_E, I_C, V_C ve V_CE hesabı (Figure 8-5 / 2N3904)."
+                },
+                en: {
+                    title: "2. Voltage-Divider Bias BJT Circuit",
+                    shortDesc: "R_IN(base) check, V_B, V_E, I_E, I_C, V_C, and V_CE calculation (Figure 8-5 / 2N3904)."
                 }
             }
         ];
@@ -248,6 +336,17 @@
                 llStep1: "Kesim Bölgesi (I_B = 0):",
                 llStep2: "Doyum Bölgesi (V_CE ≈ 0 V):",
                 llStep3: "Optimum Tasarım:",
+                vdTitle: "Gerilim Bölücü Kutuplama ve Terminal Gerilimleri Analizi",
+                vdSummary: "Baz giriş direnci koşulunu kontrol ederek V_B, V_E, I_E, I_C, V_C ve V_CE değerlerini hesaplayın.",
+                vdFigCaption: "Şekil 1: Gerilim bölücü kutuplamalı BJT devre şeması - Figure 8-5 (dc_bjt_v_div.jpg)",
+                vdStep1: "Baz Giriş Direnci ve V_B:",
+                vdStep2: "Emiter ve Kollektör Akımları:",
+                vdStep3: "Kollektör ve V_CE Gerilimleri:",
+                vdLlTitle: "Thevenin Eşdeğeri, Kesim / Doyum ve Q-Noktası",
+                vdLlSummary: "R_IN(base) ≥ 10·R_2 sağlanmadığında kullanılan tam Thevenin analizi ile DC yük doğrusu uç noktalarını inceleyin.",
+                vdLlStep1: "Tam Thevenin Eşdeğeri:",
+                vdLlStep2: "Kesim Bölgesi (I_C = 0):",
+                vdLlStep3: "Doyum Bölgesi (V_CE ≈ 0 V):",
                 footerRights: "Her Hakkı Saklıdır.",
                 backToTop: "Yukarı Çık"
             },
@@ -274,6 +373,17 @@
                 llStep1: "Cutoff Region (I_B = 0):",
                 llStep2: "Saturation Region (V_CE ≈ 0 V):",
                 llStep3: "Optimum Design:",
+                vdTitle: "Voltage-Divider Bias & Terminal Voltages Analysis",
+                vdSummary: "Check the base input resistance condition and compute V_B, V_E, I_E, I_C, V_C, and V_CE.",
+                vdFigCaption: "Figure 1: Voltage-divider bias BJT circuit schematic - Figure 8-5 (dc_bjt_v_div.jpg)",
+                vdStep1: "Base Input Resistance & V_B:",
+                vdStep2: "Emitter & Collector Currents:",
+                vdStep3: "Collector & V_CE Voltages:",
+                vdLlTitle: "Thevenin Equivalent, Cutoff / Saturation & Q-Point",
+                vdLlSummary: "Review exact Thevenin analysis when R_IN(base) < 10·R_2 along with DC load-line endpoints.",
+                vdLlStep1: "Exact Thevenin Equivalent:",
+                vdLlStep2: "Cutoff Region (I_C = 0):",
+                vdLlStep3: "Saturation Region (V_CE ≈ 0 V):",
                 footerRights: "All Rights Reserved.",
                 backToTop: "Back to Top"
             }
@@ -281,7 +391,8 @@
 
         let currentLang = localStorage.getItem("siteLang") || "tr";
         let activeTopicId = null;
-        let resultsVisible = false;
+        let fbResultsVisible = false;
+        let vdResultsVisible = false;
 
         function renderMath() {
             if (typeof renderMathInElement === "function") {
@@ -289,11 +400,11 @@
             }
         }
 
-        function renderNumericalResults() {
+        function renderFixedBiasResults() {
             const fbOut = document.getElementById("fb-result");
             const llOut = document.getElementById("ll-result");
 
-            if (!resultsVisible) {
+            if (!fbResultsVisible) {
                 fbOut.hidden = true;
                 llOut.hidden = true;
                 fbOut.innerHTML = "";
@@ -337,6 +448,93 @@
             llOut.hidden = false;
         }
 
+        function renderVoltageDividerResults() {
+            const vdOut = document.getElementById("vd-result");
+            const vdLlOut = document.getElementById("vd-ll-result");
+
+            if (!vdResultsVisible) {
+                vdOut.hidden = true;
+                vdLlOut.hidden = true;
+                vdOut.innerHTML = "";
+                vdLlOut.innerHTML = "";
+                return;
+            }
+
+            const vcc = parseFloat(document.getElementById("vd-vcc").value) || 0;
+            const vbe = parseFloat(document.getElementById("vd-vbe").value) || 0;
+            const r1 = (parseFloat(document.getElementById("vd-r1").value) || 0) * 1e3;
+            const r2 = (parseFloat(document.getElementById("vd-r2").value) || 0) * 1e3;
+            const rc = (parseFloat(document.getElementById("vd-rc").value) || 0) * 1e3;
+            const re = (parseFloat(document.getElementById("vd-re").value) || 0) * 1e3;
+            const beta = Math.max(0, parseFloat(document.getElementById("vd-beta").value) || 0);
+
+            const rinBase = beta * re;
+            const tenR2 = 10 * r2;
+            const approxValid = rinBase >= tenR2 && tenR2 > 0;
+
+            const vth = (r1 + r2) > 0 ? (r2 / (r1 + r2)) * vcc : 0;
+            const rth = (r1 + r2) > 0 ? (r1 * r2) / (r1 + r2) : 0;
+
+            // Approximate method (standard textbook approach when R_IN(base) >= 10 R_2)
+            const vbApprox = vth;
+            const veApprox = Math.max(0, vbApprox - vbe);
+            const ieApprox = re > 0 ? veApprox / re : 0;
+
+            // Exact Thevenin method
+            const denomExact = rth + (beta + 1) * re;
+            const ibExact = denomExact > 0 ? Math.max(0, (vth - vbe) / denomExact) : 0;
+            const icExact = beta * ibExact;
+            const ieExact = (beta + 1) * ibExact;
+            const veExact = ieExact * re;
+            const vbExact = ibExact === 0 ? vth : veExact + vbe;
+
+            const vb = approxValid ? vbApprox : vbExact;
+            const ve = approxValid ? veApprox : veExact;
+            const ie = approxValid ? ieApprox : ieExact;
+
+            const icSat = (rc + re) > 0 ? vcc / (rc + re) : 0;
+            const icActive = approxValid ? ieApprox : icExact;
+            const isSaturated = icActive >= icSat && icSat > 0;
+            const ic = isSaturated ? icSat : icActive;
+
+            const vc = vcc - ic * rc;
+            const vceRaw = vc - ve;
+            const vce = Math.max(0, vceRaw);
+
+            const region = currentLang === "tr"
+                ? (isSaturated || vceRaw <= 0.2 ? "Doyum" : (ic === 0 ? "Kesim" : "Aktif"))
+                : (isSaturated || vceRaw <= 0.2 ? "Saturation" : (ic === 0 ? "Cutoff" : "Active"));
+
+            const condText = currentLang === "tr"
+                ? (approxValid
+                    ? `R<sub>IN(base)</sub> = ${(rinBase / 1e3).toFixed(1)} k&Omega; &ge; 10&middot;R<sub>2</sub> (${(tenR2 / 1e3).toFixed(1)} k&Omega;) &rarr; Yaklaşık yöntem geçerli`
+                    : `R<sub>IN(base)</sub> = ${(rinBase / 1e3).toFixed(1)} k&Omega; &lt; 10&middot;R<sub>2</sub> (${(tenR2 / 1e3).toFixed(1)} k&Omega;) &rarr; Tam Thevenin kullanıldı`)
+                : (approxValid
+                    ? `R<sub>IN(base)</sub> = ${(rinBase / 1e3).toFixed(1)} k&Omega; &ge; 10&middot;R<sub>2</sub> (${(tenR2 / 1e3).toFixed(1)} k&Omega;) &rarr; Approx. method valid`
+                    : `R<sub>IN(base)</sub> = ${(rinBase / 1e3).toFixed(1)} k&Omega; &lt; 10&middot;R<sub>2</sub> (${(tenR2 / 1e3).toFixed(1)} k&Omega;) &rarr; Exact Thevenin used`);
+
+            vdOut.innerHTML =
+                `${condText}<br>` +
+                `V<sub>B</sub> = ${vb.toFixed(2)} V | V<sub>E</sub> = ${ve.toFixed(2)} V | ` +
+                `I<sub>E</sub> &approx; I<sub>C</sub> = ${(ic * 1e3).toFixed(2)} mA<br>` +
+                `V<sub>C</sub> = ${vc.toFixed(2)} V | V<sub>CE</sub> = ${vce.toFixed(2)} V (${region})`;
+            vdOut.hidden = false;
+
+            const exactVc = vcc - Math.min(icExact, icSat) * rc;
+            const exactVce = Math.max(0, exactVc - veExact);
+
+            vdLlOut.innerHTML =
+                `V<sub>TH</sub> = ${vth.toFixed(2)} V | R<sub>TH</sub> = ${(rth / 1e3).toFixed(2)} k&Omega; | ` +
+                `I<sub>B</sub> = ${(ibExact * 1e6).toFixed(2)} &mu;A | V<sub>CE(exact)</sub> = ${exactVce.toFixed(2)} V<br>` +
+                `V<sub>CE(cutoff)</sub> = ${vcc.toFixed(2)} V | I<sub>C(sat)</sub> = ${(icSat * 1e3).toFixed(2)} mA`;
+            vdLlOut.hidden = false;
+        }
+
+        function renderAllNumericalResults() {
+            renderFixedBiasResults();
+            renderVoltageDividerResults();
+        }
+
         function renderTableOfContents() {
             const tocGrid = document.getElementById("toc-grid");
             const switcher = document.getElementById("topic-quick-switcher");
@@ -375,6 +573,10 @@
 
             const activeTopic = electronicsTopics.find(t => t.id === activeTopicId);
 
+            document.querySelectorAll(".topic-panel").forEach(panel => {
+                panel.hidden = true;
+            });
+
             if (!activeTopic) {
                 tocSection.hidden = false;
                 detailSection.hidden = true;
@@ -384,6 +586,10 @@
                 const loc = activeTopic[currentLang] || activeTopic.tr;
                 tocSection.hidden = true;
                 detailSection.hidden = false;
+                const targetPanel = document.getElementById(activeTopic.panelId);
+                if (targetPanel) {
+                    targetPanel.hidden = false;
+                }
                 heroTitle.textContent = loc.title;
                 heroDesc.textContent = loc.shortDesc;
             }
@@ -394,7 +600,7 @@
             syncHeroWithView();
             renderTableOfContents();
             renderMath();
-            renderNumericalResults();
+            renderAllNumericalResults();
         }
 
         function applyLanguage(lang) {
@@ -417,7 +623,7 @@
             renderTableOfContents();
             syncHeroWithView();
             renderMath();
-            renderNumericalResults();
+            renderAllNumericalResults();
         }
 
         document.getElementById("brand-toc-link").addEventListener("click", (e) => {
@@ -435,14 +641,27 @@
         });
 
         document.getElementById("calc-btn").addEventListener("click", () => {
-            resultsVisible = true;
-            renderNumericalResults();
+            fbResultsVisible = true;
+            renderFixedBiasResults();
         });
 
-        document.querySelectorAll("input").forEach(input => {
+        document.getElementById("vd-calc-btn").addEventListener("click", () => {
+            vdResultsVisible = true;
+            renderVoltageDividerResults();
+        });
+
+        document.querySelectorAll("#panel-fixed-bias-bjt input").forEach(input => {
             input.addEventListener("input", () => {
-                if (resultsVisible) {
-                    renderNumericalResults();
+                if (fbResultsVisible) {
+                    renderFixedBiasResults();
+                }
+            });
+        });
+
+        document.querySelectorAll("#panel-voltage-divider-bjt input").forEach(input => {
+            input.addEventListener("input", () => {
+                if (vdResultsVisible) {
+                    renderVoltageDividerResults();
                 }
             });
         });
