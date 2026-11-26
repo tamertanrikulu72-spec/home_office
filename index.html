@@ -33,6 +33,7 @@
                     <ul class="nav-links">
                         <li><a href="#about" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="#services" data-i18n="navServices">Hizmetler</a></li>
+                        <li><a href="#articles" data-i18n="navArticles">Teknik Makaleler</a></li>
                         <li><a href="#gallery" data-i18n="navGallery">Projeler &amp; Galeri</a></li>
                         <li><a href="electronics.html" data-i18n="navElectronics">Elektronik</a></li>
                         <li><a href="#contact" data-i18n="navContact">İletişim</a></li>
@@ -207,8 +208,95 @@
         </div>
     </section>
 
+    <!-- Articles Section: Beton Santrali Nedir & Nasıl Çalışır -->
+    <section id="articles" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="articlesTag">TEKNİK BİLGİ &amp; MAKALELER</span>
+                <h2 data-i18n="articlesHeading">Beton Santralleri Hakkında Temel Makaleler</h2>
+                <p data-i18n="articlesDesc">İlgili başlığa tıklayarak beton santralleri ve çalışma prensipleri hakkındaki bilgilendirici makaleleri okuyabilirsiniz.</p>
+            </div>
+
+            <div class="articles-list">
+                <!-- Article 1: Beton Santrali Nedir -->
+                <article class="article-item" id="article-what-is">
+                    <button
+                        type="button"
+                        class="article-trigger"
+                        aria-expanded="false"
+                        aria-controls="panel-what-is"
+                        data-article-toggle="panel-what-is"
+                    >
+                        <span class="article-title" data-i18n="art1Title">Beton santrali nedir</span>
+                        <span class="article-action">
+                            <span class="article-hint" data-i18n="readArticle">Makaleyi Oku</span>
+                            <span class="article-icon" aria-hidden="true">+</span>
+                        </span>
+                    </button>
+
+                    <div id="panel-what-is" class="article-panel" hidden>
+                        <div class="article-content">
+                            <p data-i18n="art1P1">
+                                <strong>Beton santrali</strong>; agrega (kum, çakıl, kırmataş), çimento, su ve kimyasal katkılar gibi hammaddelerin istenen reçete ve standartlara göre hassas biçimde tartılarak karıştırılmasını sağlayan endüstriyel üretim tesisidir. İnşaat ve altyapı projelerinde yüksek kaliteli, homojen ve tekrarlanabilir hazır beton üretimi için kullanılır.
+                            </p>
+                            <h4 data-i18n="art1Sub1">Temel Bileşenleri</h4>
+                            <ul>
+                                <li data-i18n="art1B1"><strong>Agrega Bunkerleri ve Tartım Bandı/Bunkeri:</strong> Farklı boyutlardaki kum ve taşların depolandığı ve reçeteye göre tartıldığı bölümdür.</li>
+                                <li data-i18n="art1B2"><strong>Çimento Siloları ve Helezonlar:</strong> Dökme çimentonun neme karşı korunarak depolandığı ve çimento tartım kantarına aktarıldığı sistemdir.</li>
+                                <li data-i18n="art1B3"><strong>Su ve Katkı Tartım Üniteleri:</strong> Betonun kıvamı, dayanımı ve işlenebilirliği için su ve kimyasal katkıların gramaj/litre hassasiyetiyle ölçülmesini sağlar.</li>
+                                <li data-i18n="art1B4"><strong>Karıştırıcı (Mikser):</strong> Twin-shaft, planetary veya pan tipi mikserlerle tüm malzemelerin kısa sürede homojen şekilde harmanlanmasını gerçekleştirir.</li>
+                                <li data-i18n="art1B5"><strong>Otomasyon ve Kontrol Sistemi:</strong> Reçete yönetimi, kantar kalibrasyonu, arıza takibi ve üretim raporlamasını bilgisayar üzerinden yönetir.</li>
+                            </ul>
+                            <h4 data-i18n="art1Sub2">Başlıca Santral Tipleri</h4>
+                            <p data-i18n="art1P2">
+                                Kullanım sahasına göre <strong>sabit beton santralleri</strong> (yüksek kapasiteli ve uzun ömürlü yerleşik tesisler) ile <strong>mobil beton santralleri</strong> (şantiyeler arası kolay taşınabilen, hızlı kurulumlu kompakt sistemler) öne çıkar. Ayrıca kuru tip ve yaş (mikserli) tip santral seçenekleri bulunur.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2: Beton Santrali Nasıl Çalışır -->
+                <article class="article-item" id="article-how-it-works">
+                    <button
+                        type="button"
+                        class="article-trigger"
+                        aria-expanded="false"
+                        aria-controls="panel-how-it-works"
+                        data-article-toggle="panel-how-it-works"
+                    >
+                        <span class="article-title" data-i18n="art2Title">Beton santrali nasil calisir</span>
+                        <span class="article-action">
+                            <span class="article-hint" data-i18n="readArticle">Makaleyi Oku</span>
+                            <span class="article-icon" aria-hidden="true">+</span>
+                        </span>
+                    </button>
+
+                    <div id="panel-how-it-works" class="article-panel" hidden>
+                        <div class="article-content">
+                            <p data-i18n="art2P1">
+                                <strong>Beton santrali çalışma prensibi</strong>, seçilen beton sınıfına ait reçetenin otomasyon sistemine girilmesiyle başlar ve hammaddelerin sırasıyla tartılması, karıştırılması ve transmiksere boşaltılması adımlarından oluşur.
+                            </p>
+                            <h4 data-i18n="art2Sub1">Adım Adım Üretim Süreci</h4>
+                            <ol>
+                                <li data-i18n="art2S1"><strong>Reçete Seçimi ve Komut:</strong> Operatör kontrol panelinden istenen beton sınıfını (örneğin C25/30 veya C30/37) ve metrajı seçerek üretimi başlatır.</li>
+                                <li data-i18n="art2S2"><strong>Agrega Besleme ve Tartım:</strong> Bunker altındaki kapaklar veya besleyici bantlar açılarak farklı fraksiyondaki agregalar tartım kantarına aktarılır; hedef ağırlığa ulaşıldığında besleme otomatik durur.</li>
+                                <li data-i18n="art2S3"><strong>Çimento, Su ve Katkı Tartımı:</strong> Silolardaki çimento helezonlarla çimento kantarına taşınır. Eş zamanlı olarak su ve kimyasal katkılar hassas load-cell veya debimetre sistemleriyle ölçülür.</li>
+                                <li data-i18n="art2S4"><strong>Transfer ve Karıştırma:</strong> Tartılan agregalar konveyör bant veya skip kovasıyla miksere gönderilir; çimento, su ve katkılar da eklenerek belirlenen karıştırma süresi boyunca homojen beton elde edilir.</li>
+                                <li data-i18n="art2S5"><strong>Boşaltma ve Sevkiyat:</strong> Karışımı tamamlanan hazır beton, mikser alt kapağından doğrudan şantiye içindeki transmiksere boşaltılarak uygulama alanına sevk edilir.</li>
+                            </ol>
+                            <h4 data-i18n="art2Sub2">Verimli ve Güvenli Çalışma İçin Kritik Noktalar</h4>
+                            <p data-i18n="art2P2">
+                                Beton dayanımının tutarlı olması için kantarların düzenli kalibrasyonu, agrega nem ölçümü (su/çimento oranının doğru korunması), silo filtrelerinin temizliği ve karıştırıcı aşınma parçalarının periyodik bakımı büyük önem taşır.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
-    <section id="gallery" class="section">
+    <section id="gallery" class="section section-alt">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="galleryTag">GALERİ</span>
@@ -223,7 +311,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section section-alt">
+    <section id="contact" class="section">
         <div class="container contact-grid">
             <div class="contact-info">
                 <span class="section-tag" data-i18n="contactTag">İLETİŞİM</span>
@@ -283,6 +371,7 @@
                 navAbout: "Hakkımızda",
                 navElectronics: "Elektronik",
                 navServices: "Hizmetler",
+                navArticles: "Teknik Makaleler",
                 navGallery: "Projeler & Galeri",
                 navContact: "İletişim",
                 heroTag: "MÜHENDİSLİK & TASARIM",
@@ -316,6 +405,31 @@
                 srv4Desc: "Kaldırma makineleri üretimine yönelik tasarım ve mühendislik çözümleri.",
                 srv5Title: "Endüstriyel Ürün Geliştirme",
                 srv5Desc: "Yeni ürün geliştirme, mevcut tasarımların iyileştirilmesi, üretilebilirlik düzenlemeleri ve teknik dokümantasyon hizmetleri.",
+                articlesTag: "TEKNİK BİLGİ & MAKALELER",
+                articlesHeading: "Beton Santralleri Hakkında Temel Makaleler",
+                articlesDesc: "İlgili başlığa tıklayarak beton santralleri ve çalışma prensipleri hakkındaki bilgilendirici makaleleri okuyabilirsiniz.",
+                readArticle: "Makaleyi Oku",
+                closeArticle: "Kapat",
+                art1Title: "beton santrali nedir",
+                art1P1: "Beton santrali; agrega (kum, çakıl, kırmataş), çimento, su ve kimyasal katkılar gibi hammaddelerin istenen reçete ve standartlara göre hassas biçimde tartılarak karıştırılmasını sağlayan endüstriyel üretim tesisidir. İnşaat ve altyapı projelerinde yüksek kaliteli, homojen ve tekrarlanabilir hazır beton üretimi için kullanılır.",
+                art1Sub1: "Temel Bileşenleri",
+                art1B1: "Agrega Bunkerleri ve Tartım Bandı/Bunkeri: Farklı boyutlardaki kum ve taşların depolandığı ve reçeteye göre tartıldığı bölümdür.",
+                art1B2: "Çimento Siloları ve Helezonlar: Dökme çimentonun neme karşı korunarak depolandığı ve çimento tartım kantarına aktarıldığı sistemdir.",
+                art1B3: "Su ve Katkı Tartım Üniteleri: Betonun kıvamı, dayanımı ve işlenebilirliği için su ve kimyasal katkların gramaj/litre hassasiyetiyle ölçülmesini sağlar.",
+                art1B4: "Karıştırıcı (Mikser): Twin-shaft, planetary veya pan tipi mikserlerle tüm malzemelerin kısa sürede homojen şekilde harmanlanmasını gerçekleştirir.",
+                art1B5: "Otomasyon ve Kontrol Sistemi: Reçete yönetimi, kantar kalibrasyonu, arıza takibi ve üretim raporlamasını bilgisayar üzerinden yönetir.",
+                art1Sub2: "Başlıca Santral Tipleri",
+                art1P2: "Kullanım sahasına göre sabit beton santralleri (yüksek kapasiteli ve uzun ömürlü yerleşik tesisler) ile mobil beton santralleri (şantiyeler arası kolay taşınabilen, hızlı kurulumlu kompakt sistemler) öne çıkar. Ayrıca kuru tip ve yaş (mikserli) tip santral seçenekleri bulunur.",
+                art2Title: "beton santrali nasil calisir",
+                art2P1: "Beton santrali çalışma prensibi, seçilen beton sınıfına ait reçetenin otomasyon sistemine girilmesiyle başlar ve hammaddelerin sırasıyla tartılması, karıştırılması ve transmiksere boşaltılması adımlarından oluşur.",
+                art2Sub1: "Adım Adım Üretim Süreci",
+                art2S1: "Reçete Seçimi ve Komut: Operatör kontrol panelinden istenen beton sınıfını (örneğin C25/30 veya C30/37) ve metrajı seçerek üretimi başlatır.",
+                art2S2: "Agrega Besleme ve Tartım: Bunker altındaki kapaklar veya besleyici bantlar açılarak farklı fraksiyondaki agregalar tartım kantarına aktarılır; hedef ağırlığa ulaşıldığında besleme otomatik durur.",
+                art2S3: "Çimento, Su ve Katkı Tartımı: Silolardaki çimento helezonlarla çimento kantarına taşınır. Eş zamanlı olarak su ve kimyasal katkılar hassas load-cell veya debimetre sistemleriyle ölçülür.",
+                art2S4: "Transfer ve Karıştırma: Tartılan agregalar konveyör bant veya skip kovasıyla miksere gönderilir; çimento, su ve katkılar da eklenerek belirlenen karıştırma süresi boyunca homojen beton elde edilir.",
+                art2S5: "Boşaltma ve Sevkiyat: Karışımı tamamlanan hazır beton, mikser alt kapağından doğrudan şantiye içindeki transmiksere boşaltılarak uygulama alanına sevk edilir.",
+                art2Sub2: "Verimli ve Güvenli Çalışma İçin Kritik Noktalar",
+                art2P2: "Beton dayanımının tutarlı olması için kantarların düzenli kalibrasyonu, agrega nem ölçümü (su/çimento oranının doğru korunması), silo filtrelerinin temizliği ve karıştırıcı aşınma parçalarının periyodik bakımı büyük önem taşır.",
                 galleryTag: "GALERİ",
                 galleryTitle: "Tasarım ve Proje Görselleri",
                 galleryDesc: "Tamamlanan ve devam eden projelerimizden, beton santrali yerleşimlerinden ve makine tasarımlarımızdan seçilen görseller.",
@@ -349,6 +463,7 @@
                 navAbout: "About",
                 navElectronics: "Electronics",
                 navServices: "Services",
+                navArticles: "Technical Articles",
                 navGallery: "Projects & Gallery",
                 navContact: "Contact",
                 heroTag: "ENGINEERING & DESIGN",
@@ -382,6 +497,31 @@
                 srv4Desc: "Design and engineering solutions tailored to lifting machinery and hydraulic lift manufacturing.",
                 srv5Title: "Industrial Product Development",
                 srv5Desc: "New product development, design optimization, manufacturability refinements, and technical documentation services.",
+                articlesTag: "TECHNICAL INSIGHTS & ARTICLES",
+                articlesHeading: "Core Articles on Concrete Batching Plants",
+                articlesDesc: "Click a heading below to expand and read detailed articles on concrete batching plants and how they operate.",
+                readArticle: "Read Article",
+                closeArticle: "Close",
+                art1Title: "What is a concrete batching plant",
+                art1P1: "A concrete batching plant is an industrial production facility that accurately weighs and mixes raw materials—such as aggregates (sand, gravel, crushed stone), cement, water, and chemical admixtures—according to specified mix designs and standards to produce consistent, high-quality ready-mix concrete.",
+                art1Sub1: "Key Components",
+                art1B1: "Aggregate Bins and Weighing Unit: Stores different aggregate fractions and weighs them according to the mix recipe.",
+                art1B2: "Cement Silos and Screw Conveyors: Protects bulk cement from moisture and transfers it to the cement weighing scale.",
+                art1B3: "Water and Admixture Weighing Systems: Measures water and chemical additives with high precision for workability and strength.",
+                art1B4: "Mixer: Blends all materials into a uniform batch using twin-shaft, planetary, or pan mixers.",
+                art1B5: "Automation and Control System: Manages recipes, scale calibration, fault monitoring, and production reporting.",
+                art1Sub2: "Main Plant Types",
+                art1P2: "Depending on project needs, stationary batching plants (high-capacity fixed installations) and mobile batching plants (easily relocatable, fast-setup systems) are commonly used in wet-mix or dry-batch configurations.",
+                art2Title: "How a concrete batching plant works",
+                art2P1: "A concrete batching plant operates by loading a target mix recipe into the control system and sequentially weighing, transferring, mixing, and discharging raw materials into transit mixers.",
+                art2Sub1: "Step-by-Step Operation",
+                art2S1: "Recipe Selection: The operator selects the target concrete grade and batch volume from the control console.",
+                art2S2: "Aggregate Weighing: Gates or feeder belts release aggregates into the weighing hopper until target weights are reached.",
+                art2S3: "Cement, Water & Admixture Dosing: Screw conveyors feed cement to its scale while water and admixtures are metered accurately.",
+                art2S4: "Transfer and Mixing: Weighed materials move into the mixer via belt conveyor or skip hoist and are mixed until homogeneous.",
+                art2S5: "Discharge and Dispatch: Finished ready-mix concrete is discharged from the mixer into transit mixers for delivery to the job site.",
+                art2Sub2: "Key Factors for Reliable Operation",
+                art2P2: "Regular scale calibration, aggregate moisture compensation, silo filter maintenance, and periodic mixer wear-part inspection are essential for consistent concrete quality.",
                 galleryTag: "GALLERY",
                 galleryTitle: "Design & Project Images",
                 galleryDesc: "Selected images from our completed and ongoing projects, batching plant layouts, and mechanical designs.",
@@ -442,6 +582,17 @@
             if (state === "error") statusEl.textContent = dict.galleryError;
         }
 
+        function syncArticleHints() {
+            const dict = translations[currentLang];
+            document.querySelectorAll(".article-trigger").forEach(btn => {
+                const isExpanded = btn.getAttribute("aria-expanded") === "true";
+                const hintEl = btn.querySelector(".article-hint");
+                if (hintEl) {
+                    hintEl.textContent = isExpanded ? dict.closeArticle : dict.readArticle;
+                }
+            });
+        }
+
         function applyLanguage(lang) {
             currentLang = translations[lang] ? lang : "tr";
             localStorage.setItem("siteLang", currentLang);
@@ -468,6 +619,7 @@
             });
 
             setGalleryMessage(galleryState);
+            syncArticleHints();
 
             if (formSubmitted) {
                 document.getElementById("form-feedback").textContent = dict.formSent;
@@ -479,6 +631,28 @@
         });
 
         applyLanguage(currentLang);
+
+        // Article Accordion Toggle
+        document.querySelectorAll(".article-trigger").forEach(button => {
+            button.addEventListener("click", () => {
+                const panelId = button.getAttribute("data-article-toggle");
+                const panel = document.getElementById(panelId);
+                if (!panel) return;
+
+                const isCurrentlyOpen = button.getAttribute("aria-expanded") === "true";
+                const nextState = !isCurrentlyOpen;
+
+                button.setAttribute("aria-expanded", String(nextState));
+                panel.hidden = !nextState;
+
+                const icon = button.querySelector(".article-icon");
+                if (icon) {
+                    icon.textContent = nextState ? "−" : "+";
+                }
+
+                syncArticleHints();
+            });
+        });
 
         function toPictureUrl(fileName) {
             return `/pictures/${encodeURIComponent(fileName)}`;
